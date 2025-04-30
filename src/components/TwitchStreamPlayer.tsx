@@ -17,6 +17,12 @@ const TwitchStreamPlayer = ({
     setStreamChannel(e.target.value);
   };
 
+  const handleEnterKeyPress = (e: React.KeyboardEvent<HTMLInputElement>) => {
+    if (e.key === "Enter") {
+      handleSearchStreamerButton();
+    }
+  };
+
   const handleSearchStreamerButton = () => {
     setStreamers((prevStreamers) => {
       const newStreamers = [...prevStreamers];
@@ -47,6 +53,7 @@ const TwitchStreamPlayer = ({
               type="text"
               value={streamChannel}
               placeholder="Channel Name"
+              onKeyDown={handleEnterKeyPress}
               onChange={onStreamChannelChange}
             />
 
