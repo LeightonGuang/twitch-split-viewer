@@ -3,14 +3,16 @@ import StreamsGrid from "../components/StreamsGrid";
 import Chat from "../components/Chat";
 
 const SplitViewerPage = () => {
+  const [selectedStreamer, setSelectedStreamer] = useState<string>("");
   const [streamers, setStreamers] = useState<string[]>([]);
 
   useEffect(() => {
-    setStreamers(["fuslie", "abe", "shroud"]);
+    setStreamers(["fuslie", "kkatamina", "tarik"]);
   }, []);
 
   useEffect(() => {
     console.log(streamers);
+    if (streamers.length > 0) setSelectedStreamer(streamers[0]);
   }, [streamers]);
 
   return (
@@ -20,6 +22,7 @@ const SplitViewerPage = () => {
           className="max-h-dvh w-full"
           streamers={streamers}
           setStreamers={setStreamers}
+          selectedStreamer={selectedStreamer}
         />
 
         <div className="flex flex-col">
@@ -36,7 +39,12 @@ const SplitViewerPage = () => {
             </button>
           </div>
 
-          <Chat className="h-full" streamers={streamers} />
+          <Chat
+            className="h-full"
+            streamers={streamers}
+            selectedStreamer={selectedStreamer}
+            setSelectedStreamer={setSelectedStreamer}
+          />
         </div>
       </div>
     </section>
