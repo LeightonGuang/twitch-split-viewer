@@ -59,6 +59,7 @@ const HomePage = () => {
             streamers={streamers}
             selectedStreamer={selectedStreamer}
             setSelectedStreamer={setSelectedStreamer}
+            selectedExpandedStream={selectedExpandedStream}
           />
         </div>
       </div>
