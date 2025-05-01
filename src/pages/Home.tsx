@@ -10,7 +10,11 @@ const HomePage = ({ streamerList }: { streamerList: string[] }) => {
     useState<string>("");
 
   useEffect(() => {
-    setStreamers(streamerList);
+    if (streamerList.length > 0) {
+      setStreamers(streamerList);
+    } else {
+      setStreamers(["twitch"]);
+    }
   }, []);
 
   useEffect(() => {
