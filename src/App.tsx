@@ -5,7 +5,6 @@ function App() {
   const paths = window.location.pathname
     .split("/")
     .filter((path) => path !== "");
-  console.log(paths);
 
   return (
     <div>
