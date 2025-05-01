@@ -14,7 +14,7 @@ const Chat = ({
   return (
     <div className={`${className}`}>
       {!selectedExpandedStream && (
-        <div className="flex h-min w-full flex-wrap gap-2 p-2! text-white">
+        <div className="flex h-min w-full flex-wrap justify-center gap-2 p-2! text-white">
           {streamers.map(
             (streamer) =>
               streamer && (
