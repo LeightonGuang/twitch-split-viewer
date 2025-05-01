@@ -101,7 +101,7 @@ const TwitchStreamPlayer = ({
 
         <iframe
           className="h-full w-full"
-          src={`https://player.twitch.tv/?channel=${streamer}&parent=localhost${streamerIndex === 0 ? "&muted=false" : "&muted=true"}`}
+          src={`https://player.twitch.tv/?channel=${streamer}&parent=${window.location.hostname}${streamerIndex === 0 ? "&muted=false" : "&muted=true"}`}
           allowFullScreen
         />
       </div>
