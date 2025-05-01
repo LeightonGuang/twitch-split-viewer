@@ -3,14 +3,14 @@ import { useEffect, useState } from "react";
 import StreamsGrid from "../components/StreamsGrid";
 import TwitchStreamPlayer from "../components/TwitchStreamPlayer";
 
-const HomePage = () => {
-  const [streamers, setStreamers] = useState<string[]>([]);
+const HomePage = ({ streamerList }: { streamerList: string[] }) => {
+  const [streamers, setStreamers] = useState<string[]>([""]);
   const [selectedStreamer, setSelectedStreamer] = useState<string>("");
   const [selectedExpandedStream, setSelectedExpandedStream] =
     useState<string>("");
 
   useEffect(() => {
-    setStreamers(["tarik", "kkatamina", "fuslie"]);
+    setStreamers(streamerList);
   }, []);
 
   useEffect(() => {
