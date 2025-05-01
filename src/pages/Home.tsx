@@ -1,29 +1,44 @@
+import Chat from "../components/Chat";
 import { useEffect, useState } from "react";
 import StreamsGrid from "../components/StreamsGrid";
-import Chat from "../components/Chat";
+import TwitchStreamPlayer from "../components/TwitchStreamPlayer";
 
-const SplitViewerPage = () => {
-  const [selectedStreamer, setSelectedStreamer] = useState<string>("");
+const HomePage = () => {
   const [streamers, setStreamers] = useState<string[]>([]);
+  const [selectedStreamer, setSelectedStreamer] = useState<string>("");
+  const [selectedExpandedStream, setSelectedExpandedStream] =
+    useState<string>("");
 
   useEffect(() => {
-    setStreamers(["fuslie", "kkatamina", "tarik"]);
+    setStreamers(["tarik", "kkatamina", "fuslie"]);
   }, []);
 
   useEffect(() => {
-    console.log(streamers);
     if (streamers.length > 0) setSelectedStreamer(streamers[0]);
   }, [streamers]);
 
   return (
     <section className="h-dvh w-full overflow-y-clip bg-[#0e0e10]">
       <div className="flex">
-        <StreamsGrid
-          className="max-h-dvh w-full"
-          streamers={streamers}
-          setStreamers={setStreamers}
-          selectedStreamer={selectedStreamer}
-        />
+        {selectedExpandedStream ? (
+          <TwitchStreamPlayer
+            className="h-dvh w-full"
+            streamerIndex={0}
+            streamer={selectedExpandedStream}
+            setStreamers={setStreamers}
+            selectedExpandedStream={selectedExpandedStream}
+            setSelectedExpandedStream={setSelectedExpandedStream}
+          />
+        ) : (
+          <StreamsGrid
+            className="max-h-dvh w-full"
+            streamers={streamers}
+            setStreamers={setStreamers}
+            selectedStreamer={selectedStreamer}
+            selectedExpandedStream={selectedExpandedStream}
+            setSelectedExpandedStream={setSelectedExpandedStream}
+          />
+        )}
 
         <div className="flex flex-col">
           <div className="flex w-full justify-center p-2!">
@@ -51,4 +66,4 @@ const SplitViewerPage = () => {
   );
 };
 
-export default SplitViewerPage;
+export default HomePage;

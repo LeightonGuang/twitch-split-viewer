@@ -1,15 +1,21 @@
+import Button from "./Button";
 import { useEffect, useState } from "react";
+import { CloseIconSvg, ExpandIconSvg, MinimizeIconSvg } from "../assets/Icons";
 
 const TwitchStreamPlayer = ({
   className,
   streamerIndex,
   streamer,
   setStreamers,
+  selectedExpandedStream,
+  setSelectedExpandedStream,
 }: {
   className?: string;
   streamerIndex: number;
   streamer: string;
   setStreamers: React.Dispatch<React.SetStateAction<string[]>>;
+  selectedExpandedStream: string;
+  setSelectedExpandedStream: React.Dispatch<React.SetStateAction<string>>;
 }) => {
   const [streamChannel, setStreamChannel] = useState<string>("");
 
@@ -29,6 +35,14 @@ const TwitchStreamPlayer = ({
       newStreamers[streamerIndex] = streamChannel;
       return newStreamers;
     });
+  };
+
+  const handleMinimizeStreamPlayer = () => {
+    setSelectedExpandedStream("");
+  };
+
+  const handleExpandStreamPlayer = () => {
+    setSelectedExpandedStream(streamer);
   };
 
   const handleRemoveStreamPlayer = () => {
@@ -57,20 +71,32 @@ const TwitchStreamPlayer = ({
               onChange={onStreamChannelChange}
             />
 
-            <button
-              className="cursor-pointer rounded-r-[0.375rem] bg-[#2a292e] px-2! py-[0.3125rem]! text-[0.8125rem] font-semibold text-white hover:bg-[#302f35]"
+            <Button
+              className="rounded-l-none rounded-r-[0.375rem]"
               onClick={handleSearchStreamerButton}
             >
-              {"Search"}
-            </button>
+              Search
+            </Button>
           </div>
 
-          <button
-            className="cursor-pointer rounded-sm bg-[#2a292e] px-2! py-[0.3125rem]! text-[0.8125rem] font-semibold text-white hover:bg-[#302f35]"
-            onClick={handleRemoveStreamPlayer}
-          >
-            X
-          </button>
+          <div className="flex gap-2">
+            {selectedExpandedStream === streamer ? (
+              <Button onClick={handleMinimizeStreamPlayer}>
+                <MinimizeIconSvg className="h-4 w-4" />
+              </Button>
+            ) : (
+              <Button onClick={handleExpandStreamPlayer}>
+                <ExpandIconSvg className="h-4 w-4" />
+              </Button>
+            )}
+
+            <Button
+              className="hover:bg-[#FFAAA8]"
+              onClick={handleRemoveStreamPlayer}
+            >
+              <CloseIconSvg className="h-4 w-4" />
+            </Button>
+          </div>
         </div>
 
         <iframe

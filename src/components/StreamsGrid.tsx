@@ -6,11 +6,15 @@ const StreamsGrid = ({
   streamers,
   setStreamers,
   selectedStreamer,
+  selectedExpandedStream,
+  setSelectedExpandedStream,
 }: {
   className?: string;
   streamers: string[];
   setStreamers: React.Dispatch<React.SetStateAction<string[]>>;
   selectedStreamer: string;
+  selectedExpandedStream: string;
+  setSelectedExpandedStream: React.Dispatch<React.SetStateAction<string>>;
 }) => {
   const [gridClass, setGridClass] = useState<string>("grid-cols-1 grid-rows-1");
 
@@ -48,6 +52,8 @@ const StreamsGrid = ({
             streamerIndex={streamerIndex}
             streamer={streamer}
             setStreamers={setStreamers}
+            selectedExpandedStream={selectedExpandedStream}
+            setSelectedExpandedStream={setSelectedExpandedStream}
           />
         ))}
       </div>
