@@ -73,6 +73,7 @@ const TwitchStreamPlayer = ({
 
             <Button
               className="rounded-l-none rounded-r-[0.375rem]"
+              title="Search Streamer"
               onClick={handleSearchStreamerButton}
             >
               Search
@@ -81,21 +82,27 @@ const TwitchStreamPlayer = ({
 
           <div className="flex gap-2">
             {selectedExpandedStream === streamer ? (
-              <Button onClick={handleMinimizeStreamPlayer}>
+              <Button
+                title="Exit Expanded View"
+                onClick={handleMinimizeStreamPlayer}
+              >
                 <MinimizeIconSvg className="h-4 w-4" />
               </Button>
             ) : (
-              <Button onClick={handleExpandStreamPlayer}>
+              <Button title="Expand Stream" onClick={handleExpandStreamPlayer}>
                 <ExpandIconSvg className="h-4 w-4" />
               </Button>
             )}
 
-            <Button
-              className="hover:bg-[#FFAAA8]"
-              onClick={handleRemoveStreamPlayer}
-            >
-              <CloseIconSvg className="h-4 w-4" />
-            </Button>
+            {!selectedExpandedStream && (
+              <Button
+                className="hover:bg-[#FFAAA8]"
+                onClick={handleRemoveStreamPlayer}
+                title="Close Stream"
+              >
+                <CloseIconSvg className="h-4 w-4" />
+              </Button>
+            )}
           </div>
         </div>
 

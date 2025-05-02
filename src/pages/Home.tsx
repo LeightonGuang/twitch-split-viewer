@@ -54,6 +54,7 @@ const HomePage = ({ streamerList }: { streamerList: string[] }) => {
                   setStreamers([...streamers, ""]);
                 }
               }}
+              title="Add Stream"
             >
               <div className="flex items-center gap-1">
                 <PlusIconSvg className="h-4 w-4" />
