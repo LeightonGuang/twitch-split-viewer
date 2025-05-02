@@ -12,9 +12,9 @@ const Chat = ({
   selectedExpandedStream: string;
 }) => {
   return (
-    <div className={`${className}`}>
+    <div className={className}>
       {!selectedExpandedStream && (
-        <div className="flex h-min w-full flex-wrap justify-center gap-2 p-2! text-white">
+        <div className="flex h-min w-[18.75rem] flex-wrap justify-center gap-2 p-2! text-white">
           {streamers.map(
             (streamer) =>
               streamer && (
@@ -30,6 +30,7 @@ const Chat = ({
           )}
         </div>
       )}
+
       <iframe
         className="h-full"
         src={`https://www.twitch.tv/embed/${selectedExpandedStream || selectedStreamer}/chat?darkpopout&parent=${window.location.hostname}`}
