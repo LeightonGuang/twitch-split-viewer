@@ -23,7 +23,7 @@ const StreamsGrid = ({
       if (streamers.length === 1) {
         setGridClass("grid-cols-1 grid-rows-1");
       } else if (streamers.length === 2) {
-        setGridClass("grid-cols-1 grid-rows-2");
+        setGridClass("grid-cols-2 grid-rows-1");
       } else if (streamers.length === 3 || streamers.length === 4) {
         setGridClass("grid-cols-2 grid-rows-2");
       } else if (streamers.length === 5 || streamers.length === 6) {
@@ -34,7 +34,11 @@ const StreamsGrid = ({
         streamers.length === 9
       ) {
         setGridClass("grid-cols-3 grid-rows-3");
-      } else if (streamers.length === 10) {
+      } else if (
+        streamers.length === 10 ||
+        streamers.length === 11 ||
+        streamers.length === 12
+      ) {
         setGridClass("grid-cols-4 grid-rows-3");
       }
     };
