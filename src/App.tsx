@@ -1,20 +1,27 @@
 import HomePage from "./pages/Home";
-import { HashRouter, Route, Routes } from "react-router-dom";
+import { HashRouter, Route, Routes, useLocation } from "react-router-dom";
 
-function App() {
-  const paths = window.location.pathname
-    .split("/")
-    .filter((path) => path !== "");
+const AppContent = () => {
+  const location = useLocation();
+  const queryParams = new URLSearchParams(location.search);
+  const channelList =
+    queryParams.get("channels")?.split(",").slice(0, 12) || [];
 
+  return (
+    <Routes>
+      <Route path="/" element={<HomePage channelList={channelList} />} />
+    </Routes>
+  );
+};
+
+const App = () => {
   return (
     <div>
       <HashRouter>
-        <Routes>
-          <Route path="/" element={<HomePage streamerList={paths} />} />
-        </Routes>
+        <AppContent />
       </HashRouter>
     </div>
   );
-}
+};
 
 export default App;

@@ -5,15 +5,15 @@ import { PlusIconSvg } from "../assets/Icons";
 import StreamsGrid from "../components/StreamsGrid";
 import TwitchStreamPlayer from "../components/TwitchStreamPlayer";
 
-const HomePage = ({ streamerList }: { streamerList: string[] }) => {
+const HomePage = ({ channelList }: { channelList: string[] }) => {
   const [streamers, setStreamers] = useState<string[]>([""]);
   const [selectedStreamer, setSelectedStreamer] = useState<string>("");
   const [selectedExpandedStream, setSelectedExpandedStream] =
     useState<string>("");
 
   useEffect(() => {
-    if (streamerList.length > 0) {
-      setStreamers(streamerList);
+    if (channelList.length > 0) {
+      setStreamers(channelList);
     } else {
       setStreamers(["twitch"]);
     }
