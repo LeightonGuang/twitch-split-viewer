@@ -1,5 +1,5 @@
 import HomePage from "./pages/Home";
-import { HashRouter, Route, Routes, useLocation } from "react-router-dom";
+import { Route, Routes, useLocation, BrowserRouter } from "react-router-dom";
 
 const AppContent = () => {
   const location = useLocation();
@@ -16,11 +16,9 @@ const AppContent = () => {
 
 const App = () => {
   return (
-    <div>
-      <HashRouter>
-        <AppContent />
-      </HashRouter>
-    </div>
+    <BrowserRouter>
+      <AppContent />
+    </BrowserRouter>
   );
 };
 
