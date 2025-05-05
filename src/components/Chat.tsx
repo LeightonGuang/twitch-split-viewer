@@ -1,12 +1,17 @@
+import Button from "./Button";
+import { PlusIconSvg } from "../assets/Icons";
+
 const Chat = ({
   className,
   streamers,
+  setStreamers,
   selectedStreamer,
   setSelectedStreamer,
   selectedExpandedStream,
 }: {
   className?: string;
   streamers: string[];
+  setStreamers: React.Dispatch<React.SetStateAction<string[]>>;
   selectedStreamer: string;
   setSelectedStreamer: (streamer: string) => void;
   selectedExpandedStream: string;
@@ -14,7 +19,21 @@ const Chat = ({
   return (
     <div className={className}>
       {!selectedExpandedStream && (
-        <div className="flex h-min w-[18.75rem] flex-wrap justify-center gap-2 p-2! text-white">
+        <div className="flex h-min w-[18.75rem] flex-wrap gap-2 p-2! text-white">
+          <Button
+            onClick={() => {
+              if (streamers.length < 12) {
+                setStreamers([...streamers, ""]);
+              }
+            }}
+            title="Add Stream"
+          >
+            <div className="flex items-center gap-1">
+              <PlusIconSvg className="h-4 w-4" />
+              <span>Add Stream</span>
+            </div>
+          </Button>
+
           {streamers.map(
             (streamer) =>
               streamer && (

@@ -1,7 +1,5 @@
 import Chat from "../components/Chat";
-import Button from "../components/Button";
-import { useEffect, useState } from "react";
-import { PlusIconSvg } from "../assets/Icons";
+import { useState, useEffect } from "react";
 import StreamsGrid from "../components/StreamsGrid";
 import TwitchStreamPlayer from "../components/TwitchStreamPlayer";
 
@@ -47,25 +45,10 @@ const HomePage = ({ channelList }: { channelList: string[] }) => {
         )}
 
         <div className="flex h-dvh flex-col">
-          <div className="flex h-min w-full justify-center p-2!">
-            <Button
-              onClick={() => {
-                if (streamers.length < 12) {
-                  setStreamers([...streamers, ""]);
-                }
-              }}
-              title="Add Stream"
-            >
-              <div className="flex items-center gap-1">
-                <PlusIconSvg className="h-4 w-4" />
-                <span>Add Stream</span>
-              </div>
-            </Button>
-          </div>
-
           <Chat
             className="flex h-full flex-col"
             streamers={streamers}
+            setStreamers={setStreamers}
             selectedStreamer={selectedStreamer}
             setSelectedStreamer={setSelectedStreamer}
             selectedExpandedStream={selectedExpandedStream}
