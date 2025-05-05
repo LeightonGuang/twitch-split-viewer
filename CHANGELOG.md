@@ -1,5 +1,10 @@
 # CHANGELOG
 
+## v1.1.1 - 05-05-2025
+
+- Switched routing library from HashRouter to BrowserRouter
+- Ui improvements
+
 ## v1.1.0 - 01-05-2025
 
 - Added support to get channel list from query string parameters
