@@ -1,10 +1,11 @@
 import Button from "./Button";
-import { PlusIconSvg } from "../assets/Icons";
+import { PlusIconSvg, MinimizeSidebarSvg } from "../assets/Icons";
 
 const Chat = ({
   className,
   streamers,
   setStreamers,
+  setIsHideChat,
   selectedStreamer,
   setSelectedStreamer,
   selectedExpandedStream,
@@ -12,6 +13,7 @@ const Chat = ({
   className?: string;
   streamers: string[];
   setStreamers: React.Dispatch<React.SetStateAction<string[]>>;
+  setIsHideChat: React.Dispatch<React.SetStateAction<boolean>>;
   selectedStreamer: string;
   setSelectedStreamer: (streamer: string) => void;
   selectedExpandedStream: string;
@@ -20,6 +22,15 @@ const Chat = ({
     <div className={className}>
       {!selectedExpandedStream && (
         <div className="flex h-min w-[18.75rem] flex-wrap gap-2 p-2! text-white">
+          <Button
+            onClick={() => {
+              setIsHideChat(true);
+            }}
+            title="Minimize Chat"
+          >
+            <MinimizeSidebarSvg className="h-4 w-4" />
+          </Button>
+
           <Button
             onClick={() => {
               if (streamers.length < 12) {
