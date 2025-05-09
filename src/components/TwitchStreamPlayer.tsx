@@ -18,6 +18,7 @@ const TwitchStreamPlayer = ({
   setSelectedExpandedStream: React.Dispatch<React.SetStateAction<string>>;
 }) => {
   const [streamChannel, setStreamChannel] = useState<string>("");
+  const [showSearchBar, setShowSearchBar] = useState(false);
 
   const onStreamChannelChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     setStreamChannel(e.target.value);
@@ -58,51 +59,62 @@ const TwitchStreamPlayer = ({
   }, [streamer]);
 
   return (
-    <div className={className}>
+    <div
+      className={className}
+      onMouseOver={() => setShowSearchBar(true)}
+      onMouseLeave={() => setShowSearchBar(false)}
+    >
       <div className="flex h-full w-full flex-col">
-        <div className="m-2! flex items-center justify-between">
-          <div className="flex w-full">
-            <input
-              className="z-10 w-36 rounded-l-[0.375rem] border-1 border-[#49494c] bg-[#18181a] px-[0.625rem]! py-[0.3125rem]! text-[0.875rem] font-normal text-[#eeeef1] placeholder-[#959595] outline-none focus:rounded-r-none focus:border focus:border-[#a674f1] focus:ring-2 focus:ring-[#a674f1]"
-              type="text"
-              value={streamChannel}
-              placeholder="Channel Name"
-              onKeyDown={handleEnterKeyPress}
-              onChange={onStreamChannelChange}
-            />
+        <div
+          className={`${showSearchBar ? "max-h-full" : "max-h-0"} overflow-hidden duration-1000 ease-in`}
+        >
+          <div className="m-2! flex items-center justify-between">
+            <div className="flex w-full">
+              <input
+                className="z-10 w-36 rounded-l-[0.375rem] border-1 border-[#49494c] bg-[#18181a] px-[0.625rem]! py-[0.3125rem]! text-[0.875rem] font-normal text-[#eeeef1] placeholder-[#959595] outline-none focus:rounded-r-none focus:border focus:border-[#a674f1] focus:ring-2 focus:ring-[#a674f1]"
+                type="text"
+                value={streamChannel}
+                placeholder="Channel Name"
+                onKeyDown={handleEnterKeyPress}
+                onChange={onStreamChannelChange}
+              />
 
-            <Button
-              className="z-0 rounded-l-none rounded-r-[0.375rem]"
-              title="Search Streamer"
-              onClick={handleSearchStreamerButton}
-            >
-              Search
-            </Button>
-          </div>
-
-          <div className="flex gap-2">
-            {selectedExpandedStream === streamer ? (
               <Button
-                title="Exit Expanded View"
-                onClick={handleMinimizeStreamPlayer}
+                className="z-0 rounded-l-none rounded-r-[0.375rem]"
+                title="Search Streamer"
+                onClick={handleSearchStreamerButton}
               >
-                <MinimizeIconSvg className="h-4 w-4" />
+                Search
               </Button>
-            ) : (
-              <Button title="Expand Stream" onClick={handleExpandStreamPlayer}>
-                <ExpandIconSvg className="h-4 w-4" />
-              </Button>
-            )}
+            </div>
 
-            {!selectedExpandedStream && (
-              <Button
-                className="hover:bg-[#FFAAA8]"
-                onClick={handleRemoveStreamPlayer}
-                title="Close Stream"
-              >
-                <CloseIconSvg className="h-4 w-4" />
-              </Button>
-            )}
+            <div className="flex gap-2">
+              {selectedExpandedStream === streamer ? (
+                <Button
+                  title="Exit Expanded View"
+                  onClick={handleMinimizeStreamPlayer}
+                >
+                  <MinimizeIconSvg className="h-4 w-4" />
+                </Button>
+              ) : (
+                <Button
+                  title="Expand Stream"
+                  onClick={handleExpandStreamPlayer}
+                >
+                  <ExpandIconSvg className="h-4 w-4" />
+                </Button>
+              )}
+
+              {!selectedExpandedStream && (
+                <Button
+                  className="hover:bg-[#FFAAA8]"
+                  onClick={handleRemoveStreamPlayer}
+                  title="Close Stream"
+                >
+                  <CloseIconSvg className="h-4 w-4" />
+                </Button>
+              )}
+            </div>
           </div>
         </div>
 
