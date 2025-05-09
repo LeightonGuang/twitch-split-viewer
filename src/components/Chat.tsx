@@ -31,20 +31,6 @@ const Chat = ({
             <MinimizeSidebarSvg className="h-4 w-4" />
           </Button>
 
-          <Button
-            onClick={() => {
-              if (streamers.length < 12) {
-                setStreamers([...streamers, ""]);
-              }
-            }}
-            title="Add Stream"
-          >
-            <div className="flex items-center gap-1">
-              <PlusIconSvg className="h-4 w-4" />
-              <span>Add Stream</span>
-            </div>
-          </Button>
-
           {streamers.map(
             (streamer) =>
               streamer && (
@@ -58,6 +44,19 @@ const Chat = ({
                 </button>
               ),
           )}
+
+          <Button
+            onClick={() => {
+              if (streamers.length < 12) {
+                setStreamers([...streamers, ""]);
+              }
+            }}
+            title="Add Stream"
+          >
+            <div className="flex items-center gap-1">
+              <PlusIconSvg className="h-4 w-4" />
+            </div>
+          </Button>
         </div>
       )}
 
