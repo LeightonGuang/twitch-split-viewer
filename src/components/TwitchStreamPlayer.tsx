@@ -63,7 +63,7 @@ const TwitchStreamPlayer = ({
         <div className="m-2! flex items-center justify-between">
           <div className="flex w-full">
             <input
-              className="w-36 rounded-l-[0.375rem] border-1 border-[#49494c] bg-[#18181a] px-[0.625rem]! py-[0.3125rem]! text-[0.875rem] font-normal text-[#eeeef1] placeholder-[#959595]"
+              className="z-10 w-36 rounded-l-[0.375rem] border-1 border-[#49494c] bg-[#18181a] px-[0.625rem]! py-[0.3125rem]! text-[0.875rem] font-normal text-[#eeeef1] placeholder-[#959595] outline-none focus:rounded-r-none focus:border focus:border-[#a674f1] focus:ring-2 focus:ring-[#a674f1]"
               type="text"
               value={streamChannel}
               placeholder="Channel Name"
@@ -72,7 +72,7 @@ const TwitchStreamPlayer = ({
             />
 
             <Button
-              className="rounded-l-none rounded-r-[0.375rem]"
+              className="z-0 rounded-l-none rounded-r-[0.375rem]"
               title="Search Streamer"
               onClick={handleSearchStreamerButton}
             >
