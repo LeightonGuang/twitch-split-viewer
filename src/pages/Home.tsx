@@ -9,6 +9,7 @@ const HomePage = ({ channelList }: { channelList: string[] }) => {
   const [selectedExpandedStream, setSelectedExpandedStream] =
     useState<string>("");
   const [showChat, setShowChat] = useState<boolean>(true);
+  const [isMobile, setIsMobile] = useState<boolean>(false);
 
   useEffect(() => {
     if (channelList.length > 0) {
@@ -21,6 +22,21 @@ const HomePage = ({ channelList }: { channelList: string[] }) => {
   useEffect(() => {
     if (streamers.length > 0) setSelectedStreamer(streamers[0]);
   }, [streamers]);
+
+  useEffect(() => {
+    const checkWidth = () => {
+      const isMobile = window.innerWidth <= 768;
+      setIsMobile(isMobile);
+      setShowChat(!isMobile);
+    };
+
+    checkWidth();
+    window.addEventListener("resize", checkWidth);
+
+    return () => {
+      window.removeEventListener("resize", checkWidth);
+    };
+  }, []);
 
   return (
     <section className="h-dvh w-full overflow-y-clip bg-[#0e0e10]">
@@ -37,6 +53,7 @@ const HomePage = ({ channelList }: { channelList: string[] }) => {
         ) : (
           <StreamsGrid
             className="max-h-dvh w-full"
+            isMobile={isMobile}
             streamers={streamers}
             setStreamers={setStreamers}
             selectedStreamer={selectedStreamer}
