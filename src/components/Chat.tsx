@@ -26,8 +26,8 @@ const Chat = ({
 }) => {
   return (
     <div
-      className={`${className} flex h-dvh flex-col bg-[#18181a] transition-[width] duration-500 ease-in-out ${
-        showChat ? "w-[340px]!" : "w-[3rem]"
+      className={`${className} flex h-dvh max-w-[21.25rem] min-w-[3rem] flex-col bg-[#18181a] transition-[width] duration-750 ease-in-out ${
+        showChat ? "w-[30rem]" : "w-[3rem]"
       }`}
     >
       <div className="flex h-min w-full flex-wrap gap-2 p-2! text-white">
