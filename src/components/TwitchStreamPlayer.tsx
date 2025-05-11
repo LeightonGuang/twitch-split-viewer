@@ -21,7 +21,7 @@ const TwitchStreamPlayer = ({
   const [showSearchBar, setShowSearchBar] = useState(false);
 
   const onStreamChannelChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    setStreamChannel(e.target.value);
+    setStreamChannel(e.target.value.trim());
   };
 
   const handleEnterKeyPress = (e: React.KeyboardEvent<HTMLInputElement>) => {
