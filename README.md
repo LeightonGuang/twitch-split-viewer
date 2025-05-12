@@ -6,7 +6,7 @@
 ![TailwindCSS](https://img.shields.io/badge/tailwindcss-%2338B2AC.svg?style=for-the-badge&logo=tailwind-css&logoColor=white)
 ![TypeScript](https://img.shields.io/badge/typescript-%23007ACC.svg?style=for-the-badge&logo=typescript&logoColor=white)
 
-<img src="./public//assets/streamerIcon.png" width="80" height="80" />
+  <img src="./public//assets/streamerIcon.png" width="80" height="80" />
 
 </div>
 
@@ -18,7 +18,7 @@ Twitch Split Viewer is a web application that allows users to watch multiple Twi
 
 To use Twitch Split Viewer, simply visit the website and enter the names of the Twitch streams you want to watch. You can also load multiple streams by adding the list of channels in the URL like so:
 
-https://twitchsplitviewer.netlify.app/`?channels=channel1,channel2,channel3`
+[https://twitchsplitviewer.netlify.app/](https://twitchsplitviewer.netlify.app/)`?channels=channel1,channel2,channel3`
 
 ## Features
 
