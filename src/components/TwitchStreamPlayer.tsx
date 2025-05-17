@@ -1,6 +1,11 @@
+import {
+  CloseIconSvg,
+  ExpandIconSvg,
+  RefreshIconSvg,
+  MinimizeIconSvg,
+} from "../assets/Icons";
 import Button from "./Button";
 import { useEffect, useState } from "react";
-import { CloseIconSvg, ExpandIconSvg, MinimizeIconSvg } from "../assets/Icons";
 
 const TwitchStreamPlayer = ({
   className,
@@ -17,6 +22,7 @@ const TwitchStreamPlayer = ({
   selectedExpandedStream: string;
   setSelectedExpandedStream: React.Dispatch<React.SetStateAction<string>>;
 }) => {
+  const [refreshCount, setRefreshCount] = useState(0);
   const [streamChannel, setStreamChannel] = useState<string>("");
   const [showSearchBar, setShowSearchBar] = useState(false);
 
@@ -36,6 +42,10 @@ const TwitchStreamPlayer = ({
       newStreamers[streamerIndex] = streamChannel;
       return newStreamers;
     });
+  };
+
+  const handleRefreshStreamPlayer = () => {
+    setRefreshCount((prevCount) => prevCount + 1);
   };
 
   const handleMinimizeStreamPlayer = () => {
@@ -89,6 +99,10 @@ const TwitchStreamPlayer = ({
             </div>
 
             <div className="flex gap-2">
+              <Button onClick={handleRefreshStreamPlayer}>
+                <RefreshIconSvg className="h-4 w-4" />
+              </Button>
+
               {selectedExpandedStream === streamer ? (
                 <Button
                   title="Exit Expanded View"
@@ -119,6 +133,7 @@ const TwitchStreamPlayer = ({
         </div>
 
         <iframe
+          key={streamer + "-" + refreshCount}
           className="h-full w-full"
           src={`https://player.twitch.tv/?channel=${streamer}&parent=${window.location.hostname}${streamerIndex === 0 ? "&muted=false" : "&muted=true"}`}
           allowFullScreen
