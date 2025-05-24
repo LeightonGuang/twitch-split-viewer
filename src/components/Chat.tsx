@@ -52,18 +52,27 @@ const Chat = ({
 
         {showChat && !selectedExpandedStream && (
           <>
-            {streamers.map(
-              (streamer) =>
-                streamer && (
-                  <button
-                    key={streamer}
-                    className={`cursor-pointer rounded-sm bg-[#2a292e] px-2! py-[0.3125rem]! text-[0.8125rem] font-semibold text-white hover:bg-[#302f35] ${selectedStreamer === streamer && "bg-[#9147ff] hover:bg-[#772CE8]"}`}
-                    title={streamer + "'s chat"}
-                    onClick={() => setSelectedStreamer(streamer)}
-                  >
-                    {streamer}
-                  </button>
-                ),
+            {streamers.map((streamer, i) =>
+              streamer ? (
+                <button
+                  key={streamer}
+                  className={`cursor-pointer rounded-sm bg-[#2a292e] px-2! py-[0.3125rem]! text-[0.8125rem] font-semibold text-white hover:bg-[#302f35] ${selectedStreamer === streamer && "bg-[#9147ff] hover:bg-[#772CE8]"}`}
+                  title={streamer + "'s chat"}
+                  onClick={() => setSelectedStreamer(streamer)}
+                >
+                  {streamer}
+                </button>
+              ) : (
+                <button
+                  key={`Channel ${i + 1}`}
+                  className={`rounded-sm bg-[#2a292e] px-2! py-[0.3125rem]! text-[0.8125rem] font-semibold text-white italic opacity-50 ${selectedStreamer === streamer && "bg-[#9147ff]"}`}
+                  disabled={true}
+                  title={`Channel ${i + 1}'s chat`}
+                  onClick={() => setSelectedStreamer(`Channel ${i + 1}`)}
+                >
+                  {`Channel ${i + 1}`}
+                </button>
+              ),
             )}
 
             <Button
