@@ -30,7 +30,7 @@ const Chat = ({
         showChat ? "w-[30rem]" : "w-[3rem]"
       }`}
     >
-      <div className="flex h-min w-full flex-wrap gap-2 p-2! text-white">
+      <div className="flex h-min w-full flex-wrap gap-2 p-2 text-white">
         {showChat ? (
           <Button
             onClick={() => {
@@ -52,41 +52,36 @@ const Chat = ({
 
         {showChat && !selectedExpandedStream && (
           <>
-            {streamers.map((streamer, i) =>
-              streamer ? (
-                <button
-                  key={streamer}
-                  className={`cursor-pointer rounded-sm bg-[#2a292e] px-2! py-[0.3125rem]! text-[0.8125rem] font-semibold text-white hover:bg-[#302f35] ${selectedStreamer === streamer && "bg-[#9147ff] hover:bg-[#772CE8]"}`}
-                  title={streamer + "'s chat"}
-                  onClick={() => setSelectedStreamer(streamer)}
-                >
-                  {streamer}
-                </button>
-              ) : (
-                <button
-                  key={`Channel ${i + 1}`}
-                  className={`rounded-sm bg-[#2a292e] px-2! py-[0.3125rem]! text-[0.8125rem] font-semibold text-white italic opacity-50 ${selectedStreamer === streamer && "bg-[#9147ff]"}`}
-                  disabled={true}
-                  title={`Channel ${i + 1}'s chat`}
-                  onClick={() => setSelectedStreamer(`Channel ${i + 1}`)}
-                >
-                  {`Channel ${i + 1}`}
-                </button>
-              ),
-            )}
+            {streamers.map((streamer, i) => (
+              <button
+                key={streamer}
+                className={`rounded-sm bg-[#2a292e] px-2 py-[0.3125rem] text-[0.8125rem] font-semibold ${streamer && "cursor-pointer hover:bg-[#302f35]"} ${selectedStreamer === streamer && "bg-[#9147ff] hover:bg-[#772CE8]"}`}
+                disabled={!streamer}
+                title={streamer && streamer + "'s chat"}
+                onClick={() => setSelectedStreamer(streamer)}
+              >
+                {streamer ? (
+                  <span className="text-white">{streamer}</span>
+                ) : (
+                  <span className="opacity-40">{"Channel " + (i + 1)}</span>
+                )}
+              </button>
+            ))}
 
-            <Button
-              onClick={() => {
-                if (streamers.length < 12) {
-                  setStreamers([...streamers, ""]);
-                }
-              }}
-              title="Add Stream"
-            >
-              <div className="flex items-center gap-1">
-                <PlusIconSvg className="h-4 w-4" />
-              </div>
-            </Button>
+            {streamers.length < 12 && (
+              <Button
+                onClick={() => {
+                  if (streamers.length < 12) {
+                    setStreamers([...streamers, ""]);
+                  }
+                }}
+                title="Add Channel"
+              >
+                <div className="flex items-center gap-1">
+                  <PlusIconSvg className="h-4 w-4" />
+                </div>
+              </Button>
+            )}
           </>
         )}
       </div>
