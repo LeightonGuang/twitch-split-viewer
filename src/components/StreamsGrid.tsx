@@ -65,15 +65,19 @@ const StreamsGrid = ({
     <div className={className}>
       <div className={`grid h-dvh w-full ${gridClass}`}>
         {streamers.map((streamer, streamerIndex) => (
-          <TwitchStreamPlayer
-            className={`h-full w-full ${selectedStreamer === streamer && "border border-[#9147ff]"}`}
-            key={streamerIndex}
-            streamerIndex={streamerIndex}
-            streamer={streamer}
-            setStreamers={setStreamers}
-            selectedExpandedStream={selectedExpandedStream}
-            setSelectedExpandedStream={setSelectedExpandedStream}
-          />
+          <div
+            className={`${selectedStreamer === streamer && "bg-twitch-gradient p-[0.15rem]!"}`}
+          >
+            <TwitchStreamPlayer
+              key={streamerIndex}
+              className="h-full w-full"
+              streamerIndex={streamerIndex}
+              streamer={streamer}
+              setStreamers={setStreamers}
+              selectedExpandedStream={selectedExpandedStream}
+              setSelectedExpandedStream={setSelectedExpandedStream}
+            />
+          </div>
         ))}
       </div>
     </div>
