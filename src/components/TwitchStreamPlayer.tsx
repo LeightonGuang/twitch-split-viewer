@@ -76,9 +76,9 @@ const TwitchStreamPlayer = ({
     >
       <div className="flex h-full w-full flex-col">
         <div
-          className={`${showSearchBar ? "max-h-full" : "max-h-0"} overflow-hidden duration-1000 ease-in`}
+          className={`${showSearchBar ? "max-h-full" : "max-h-0"} flex overflow-hidden bg-[#18181a] duration-1000 ease-in`}
         >
-          <div className="m-2! flex items-center justify-between">
+          <div className="m-2! flex w-full items-center justify-between">
             <div className="flex w-full">
               <input
                 className="z-10 w-36 rounded-l-[0.375rem] border-1 border-[#49494c] bg-[#18181a] px-[0.625rem]! py-[0.3125rem]! text-[0.875rem] font-normal text-[#eeeef1] placeholder-[#959595] outline-none focus:rounded-r-none focus:border focus:border-[#a674f1] focus:ring-2 focus:ring-[#a674f1]"
