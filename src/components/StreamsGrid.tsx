@@ -66,7 +66,7 @@ const StreamsGrid = ({
       <div className={`grid h-dvh w-full ${gridClass}`}>
         {streamers.map((streamer, streamerIndex) => (
           <div
-            className={`${selectedStreamer === streamer && "bg-twitch-gradient p-[0.15rem]!"}`}
+            className={`${selectedStreamer === streamer && "bg-twitch-gradient p-[0.15rem]"}`}
           >
             <TwitchStreamPlayer
               key={streamerIndex}

@@ -15,7 +15,7 @@ const Button: React.FC<CustomButtonProps> = ({
 }) => {
   return (
     <button
-      className={`cursor-pointer rounded-sm bg-[#2a292e] px-2! py-[0.3125rem]! text-[0.8125rem] font-semibold text-white hover:bg-[#302f35] ${className}`}
+      className={`cursor-pointer rounded-sm bg-[#2a292e] px-2 py-[0.3125rem] text-[0.8125rem] font-semibold text-white hover:bg-[#302f35] ${className}`}
       onClick={onClick}
       title={title}
     >
