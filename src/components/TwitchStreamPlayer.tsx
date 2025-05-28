@@ -76,7 +76,7 @@ const TwitchStreamPlayer = ({
     >
       <div className="flex h-full w-full flex-col">
         <div
-          className={`${showSearchBar ? "max-h-full" : "max-h-0"} flex overflow-hidden bg-[#18181a] duration-1000 ease-in`}
+          className={`flex w-full overflow-hidden bg-[#18181a] duration-1000 ease-in-out ${showSearchBar ? "max-h-full" : "max-h-0"}`}
         >
           <div className="m-2 flex w-full items-center justify-between">
             <div className="flex w-full">
