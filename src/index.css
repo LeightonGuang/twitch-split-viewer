@@ -1,5 +1,8 @@
 @import "tailwindcss";
 
+@theme {
+}
+
 *,
 *::before,
 *::after {
@@ -14,4 +17,12 @@ body {
 
 img {
   max-width: 100%;
+}
+
+.bg-twitch-gradient {
+  @apply bg-gradient-to-br from-[#772CE8] via-[#478CD6] to-[#00C7AC];
+}
+
+.bg-purple-gradient {
+  @apply bg-gradient-to-br from-[#772CE8] to-[#9146FF];
 }
