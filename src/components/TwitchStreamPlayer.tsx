@@ -39,7 +39,16 @@ const TwitchStreamPlayer = ({
   const handleSearchStreamerButton = () => {
     setStreamers((prevStreamers) => {
       const newStreamers = [...prevStreamers];
-      newStreamers[streamerIndex] = streamChannel;
+      if (streamChannel.includes("/")) {
+        console.log(streamChannel.split("/"));
+        const channelName =
+          streamChannel.split("/")[streamChannel.split("/").length - 1];
+        console.log(channelName);
+        newStreamers[streamerIndex] = channelName;
+      } else {
+        console.log(streamChannel);
+        newStreamers[streamerIndex] = streamChannel;
+      }
       return newStreamers;
     });
   };
