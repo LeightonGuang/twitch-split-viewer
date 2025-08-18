@@ -67,12 +67,13 @@ const StreamsGrid = ({
         {streamers.map((streamer, streamerIndex) => (
           <div
             className={`${selectedStreamer === streamer && "bg-twitch-gradient p-[0.15rem]"}`}
+            key={streamer}
           >
             <TwitchStreamPlayer
-              key={streamerIndex}
               className="h-full w-full"
               streamerIndex={streamerIndex}
               streamer={streamer}
+              streamers={streamers}
               setStreamers={setStreamers}
               selectedExpandedStream={selectedExpandedStream}
               setSelectedExpandedStream={setSelectedExpandedStream}
