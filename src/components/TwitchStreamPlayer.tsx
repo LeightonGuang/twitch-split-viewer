@@ -11,6 +11,7 @@ const TwitchStreamPlayer = ({
   className,
   streamerIndex,
   streamer,
+  streamers,
   setStreamers,
   selectedExpandedStream,
   setSelectedExpandedStream,
@@ -18,6 +19,7 @@ const TwitchStreamPlayer = ({
   className?: string;
   streamerIndex: number;
   streamer: string;
+  streamers: string[];
   setStreamers: React.Dispatch<React.SetStateAction<string[]>>;
   selectedExpandedStream: string;
   setSelectedExpandedStream: React.Dispatch<React.SetStateAction<string>>;
@@ -37,20 +39,21 @@ const TwitchStreamPlayer = ({
   };
 
   const handleSearchStreamerButton = () => {
-    setStreamers((prevStreamers) => {
-      const newStreamers = [...prevStreamers];
-      if (streamChannel.includes("/")) {
-        console.log(streamChannel.split("/"));
-        const channelName =
-          streamChannel.split("/")[streamChannel.split("/").length - 1];
-        console.log(channelName);
-        newStreamers[streamerIndex] = channelName;
-      } else {
-        console.log(streamChannel);
-        newStreamers[streamerIndex] = streamChannel;
-      }
-      return newStreamers;
-    });
+    const channelName = streamChannel.includes("/")
+      ? streamChannel.split("/")[streamChannel.split("/").length - 1]
+      : streamChannel;
+
+    if (!streamers.includes(channelName)) {
+      setStreamers((prevStreamers) => {
+        const newStreamers = [...prevStreamers];
+        if (streamChannel.includes("/")) {
+          newStreamers[streamerIndex] = channelName;
+        } else {
+          newStreamers[streamerIndex] = channelName;
+        }
+        return newStreamers;
+      });
+    }
   };
 
   const handleRefreshStreamPlayer = () => {
@@ -99,7 +102,7 @@ const TwitchStreamPlayer = ({
               />
 
               <Button
-                className="z-0 rounded-l-none rounded-r-[0.375rem]"
+                className="z-0 rounded-l-none rounded-r-[0.375rem] py-2 leading-normal"
                 title="Search Streamer"
                 onClick={handleSearchStreamerButton}
               >
@@ -108,7 +111,7 @@ const TwitchStreamPlayer = ({
             </div>
 
             <div className="flex gap-2">
-              <Button onClick={handleRefreshStreamPlayer}>
+              <Button title="Refresh " onClick={handleRefreshStreamPlayer}>
                 <RefreshIconSvg className="h-4 w-4" />
               </Button>
 
@@ -120,19 +123,16 @@ const TwitchStreamPlayer = ({
                   <MinimizeIconSvg className="h-4 w-4" />
                 </Button>
               ) : (
-                <Button
-                  title="Expand Stream"
-                  onClick={handleExpandStreamPlayer}
-                >
+                <Button title="Expand" onClick={handleExpandStreamPlayer}>
                   <ExpandIconSvg className="h-4 w-4" />
                 </Button>
               )}
 
               {!selectedExpandedStream && (
                 <Button
-                  className="hover:bg-[#FFAAA8]"
+                  className="hover:bg-[#FFAAA8] hover:text-black"
                   onClick={handleRemoveStreamPlayer}
-                  title="Close Stream"
+                  title="Close"
                 >
                   <CloseIconSvg className="h-4 w-4" />
                 </Button>
