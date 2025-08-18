@@ -46,6 +46,7 @@ const HomePage = ({ channelList }: { channelList: string[] }) => {
             className="h-dvh w-full"
             streamerIndex={0}
             streamer={selectedExpandedStream}
+            streamers={streamers}
             setStreamers={setStreamers}
             selectedExpandedStream={selectedExpandedStream}
             setSelectedExpandedStream={setSelectedExpandedStream}
