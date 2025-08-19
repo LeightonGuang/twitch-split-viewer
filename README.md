@@ -18,7 +18,7 @@ Twitch Split Viewer is a web application that allows users to watch multiple Twi
 
 To use Twitch Split Viewer, simply visit the website and enter the names of the Twitch streams you want to watch. You can also load multiple streams by adding the list of channels in the URL like so:
 
-[https://twitchsplitviewer.netlify.app/](https://twitchsplitviewer.netlify.app/)`?channels=channel1,channel2,channel3`
+[https://twitchsplitviewer.pages.dev/](https://twitchsplitviewer.pages.dev/)`?channels=channel1,channel2,channel3`
 
 ## Features
 
