@@ -1,5 +1,12 @@
 # CHANGELOG
 
+# v1.3.0 - 19-08-2025
+
+- Prevent duplicate streams
+- Fixed case where twitch stream refreshes when channel list is updated
+- Updated button style to the newest twitch button design
+- Search bar to accept twitch channel url
+
 ## v1.2.0 - 10-05-2025
 
 - Optimized grid view for mobile devices
