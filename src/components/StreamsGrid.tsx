@@ -36,14 +36,14 @@ const StreamsGrid = ({
     const handleDefaultStreamersChange = () => {
       if (isMobile) {
         console.log("Mobile view");
-        setGridClass("grid-cols-1 grid-rows-3");
+        setDefaultGridClass("grid-cols-1 grid-rows-3");
 
         if (streamers.length === 1) {
-          setGridClass("grid-cols-1 grid-rows-1");
+          setDefaultGridClass("grid-cols-1 grid-rows-1");
         } else if (streamers.length === 2) {
-          setGridClass("grid-cols-1 grid-rows-2");
+          setDefaultGridClass("grid-cols-1 grid-rows-2");
         } else if (streamers.length >= 3) {
-          setGridClass("grid-cols-1 grid-rows-3");
+          setDefaultGridClass("grid-cols-1 grid-rows-3");
         }
       } else if (!isMobile) {
         if (streamers.length === 1) {
