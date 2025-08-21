@@ -7,7 +7,9 @@ const StreamsGrid = ({
   streamers,
   setStreamers,
   team1Streamers,
+  setTeam1Streamers,
   team2Streamers,
+  setTeam2Streamers,
   selectedStreamerChat,
   selectedExpandedStream,
   setSelectedExpandedStream,
@@ -17,7 +19,9 @@ const StreamsGrid = ({
   streamers: string[];
   setStreamers: React.Dispatch<React.SetStateAction<string[]>>;
   team1Streamers: string[];
+  setTeam1Streamers: React.Dispatch<React.SetStateAction<string[]>>;
   team2Streamers: string[];
+  setTeam2Streamers: React.Dispatch<React.SetStateAction<string[]>>;
   selectedStreamerChat: string;
   selectedExpandedStream: string;
   setSelectedExpandedStream: React.Dispatch<React.SetStateAction<string>>;
@@ -133,20 +137,18 @@ const StreamsGrid = ({
             <div
               className={`grid h-dvh w-full ${team1GridClass} bg-green-400 p-1`}
             >
-              {team1Streamers.map((streamer) => {
-                return (
-                  <TwitchStreamPlayer
-                    className="h-full w-full"
-                    streamerIndex={0}
-                    listType="team1"
-                    streamer={streamer}
-                    streamers={team1Streamers}
-                    setStreamers={setStreamers}
-                    selectedExpandedStream={selectedExpandedStream}
-                    setSelectedExpandedStream={setSelectedExpandedStream}
-                  />
-                );
-              })}
+              {team1Streamers.map((streamer) => (
+                <TwitchStreamPlayer
+                  key={streamer}
+                  className="h-full w-full"
+                  streamerIndex={0}
+                  listType="team1"
+                  streamer={streamer}
+                  setTeam1Streamers={setTeam1Streamers}
+                  selectedExpandedStream={selectedExpandedStream}
+                  setSelectedExpandedStream={setSelectedExpandedStream}
+                />
+              ))}
             </div>
           )}
 
@@ -154,20 +156,18 @@ const StreamsGrid = ({
             <div
               className={`grid h-dvh w-full ${team2GridClass} bg-red-400 p-1`}
             >
-              {team2Streamers.map((streamer) => {
-                return (
-                  <TwitchStreamPlayer
-                    className="h-full w-full"
-                    streamerIndex={0}
-                    listType="team2"
-                    streamer={streamer}
-                    streamers={team2Streamers}
-                    setStreamers={setStreamers}
-                    selectedExpandedStream={selectedExpandedStream}
-                    setSelectedExpandedStream={setSelectedExpandedStream}
-                  />
-                );
-              })}
+              {team2Streamers.map((streamer) => (
+                <TwitchStreamPlayer
+                  key={streamer}
+                  className="h-full w-full"
+                  streamerIndex={0}
+                  listType="team2"
+                  streamer={streamer}
+                  setTeam2Streamers={setTeam2Streamers}
+                  selectedExpandedStream={selectedExpandedStream}
+                  setSelectedExpandedStream={setSelectedExpandedStream}
+                />
+              ))}
             </div>
           )}
         </div>
