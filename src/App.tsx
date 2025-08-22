@@ -3,13 +3,25 @@ import { Route, Routes, useLocation, BrowserRouter } from "react-router-dom";
 
 const AppContent = () => {
   const location = useLocation();
-  const queryParams = new URLSearchParams(location.search);
-  const channelList =
+  const queryParams: URLSearchParams = new URLSearchParams(location.search);
+
+  const channelList: string[] =
     queryParams.get("channels")?.split(",").slice(0, 12) || [];
+  const team1List: string[] = queryParams.get("team1")?.split(",") || [];
+  const team2List: string[] = queryParams.get("team2")?.split(",") || [];
 
   return (
     <Routes>
-      <Route path="/" element={<HomePage channelList={channelList} />} />
+      <Route
+        path="/"
+        element={
+          <HomePage
+            channelList={channelList}
+            team1List={team1List}
+            team2List={team2List}
+          />
+        }
+      />
     </Routes>
   );
 };

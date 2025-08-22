@@ -113,15 +113,13 @@ const StreamsGrid = ({
     <div className={className}>
       {streamers.length > 0 ? (
         <div className={`grid h-dvh w-full ${defaultGridClass}`}>
-          {streamers.map((streamer, streamerIndex) => (
+          {streamers.map((streamer) => (
             <div
               className={`${selectedStreamerChat === streamer && "bg-twitch-gradient p-[0.15rem]"}`}
               key={streamer}
             >
               <TwitchStreamPlayer
                 className="h-full w-full"
-                streamerIndex={streamerIndex}
-                listType="default"
                 streamer={streamer}
                 streamers={streamers}
                 setStreamers={setStreamers}
@@ -141,8 +139,6 @@ const StreamsGrid = ({
                 <TwitchStreamPlayer
                   key={streamer}
                   className="h-full w-full"
-                  streamerIndex={0}
-                  listType="team1"
                   streamer={streamer}
                   setTeam1Streamers={setTeam1Streamers}
                   selectedExpandedStream={selectedExpandedStream}
@@ -160,8 +156,6 @@ const StreamsGrid = ({
                 <TwitchStreamPlayer
                   key={streamer}
                   className="h-full w-full"
-                  streamerIndex={0}
-                  listType="team2"
                   streamer={streamer}
                   setTeam2Streamers={setTeam2Streamers}
                   selectedExpandedStream={selectedExpandedStream}
