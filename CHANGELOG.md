@@ -1,5 +1,11 @@
 # CHANGELOG
 
+# v2.0.0 22-08-2025
+
+- New teams split view mode
+- Added support to get team1 and team2 list from query string parameters
+
+
 # v1.3.0 - 19-08-2025
 
 - Prevent duplicate streams
