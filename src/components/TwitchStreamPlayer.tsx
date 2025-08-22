@@ -1,6 +1,7 @@
 import {
   CloseIconSvg,
   ExpandIconSvg,
+  SearchIconSvg,
   RefreshIconSvg,
   MinimizeIconSvg,
 } from "../assets/Icons";
@@ -9,18 +10,19 @@ import { useEffect, useState } from "react";
 
 const TwitchStreamPlayer = ({
   className,
-  streamerIndex,
   streamer,
-  streamers,
   setStreamers,
+  setTeam1Streamers,
+  setTeam2Streamers,
   selectedExpandedStream,
   setSelectedExpandedStream,
 }: {
   className?: string;
-  streamerIndex: number;
   streamer: string;
-  streamers: string[];
-  setStreamers: React.Dispatch<React.SetStateAction<string[]>>;
+  streamers?: string[];
+  setStreamers?: React.Dispatch<React.SetStateAction<string[]>>;
+  setTeam1Streamers?: React.Dispatch<React.SetStateAction<string[]>>;
+  setTeam2Streamers?: React.Dispatch<React.SetStateAction<string[]>>;
   selectedExpandedStream: string;
   setSelectedExpandedStream: React.Dispatch<React.SetStateAction<string>>;
 }) => {
@@ -43,15 +45,26 @@ const TwitchStreamPlayer = ({
       ? streamChannel.split("/")[streamChannel.split("/").length - 1]
       : streamChannel;
 
-    if (!streamers.includes(channelName)) {
+    if (setStreamers) {
       setStreamers((prevStreamers) => {
         const newStreamers = [...prevStreamers];
-        if (streamChannel.includes("/")) {
-          newStreamers[streamerIndex] = channelName;
-        } else {
-          newStreamers[streamerIndex] = channelName;
-        }
+        const streamerIndex = prevStreamers.indexOf(streamer);
+        newStreamers[streamerIndex] = channelName;
         return newStreamers;
+      });
+    } else if (setTeam1Streamers) {
+      setTeam1Streamers((prevStreamers) => {
+        const streamerIndex = prevStreamers.indexOf(streamer);
+        const newTeam1Streamers = [...prevStreamers];
+        newTeam1Streamers[streamerIndex] = channelName;
+        return newTeam1Streamers;
+      });
+    } else if (setTeam2Streamers) {
+      setTeam2Streamers((prevStreamers) => {
+        const streamerIndex = prevStreamers.indexOf(streamer);
+        const newTeam2Streamers = [...prevStreamers];
+        newTeam2Streamers[streamerIndex] = channelName;
+        return newTeam2Streamers;
       });
     }
   };
@@ -68,12 +81,27 @@ const TwitchStreamPlayer = ({
     setSelectedExpandedStream(streamer);
   };
 
-  const handleRemoveStreamPlayer = () => {
-    setStreamers((prevStreamers) => {
-      const newStreamers = [...prevStreamers];
-      newStreamers.splice(streamerIndex, 1);
-      return newStreamers;
-    });
+  const handleRemoveStreamPlayer = (streamer: string) => {
+    if (setStreamers) {
+      setStreamers((prevStreamers) => {
+        const newStreamers = [...prevStreamers].filter((s) => s !== streamer);
+        return newStreamers;
+      });
+    } else if (setTeam1Streamers) {
+      setTeam1Streamers((prevStreamers) => {
+        const newTeam1Streamers = [...prevStreamers].filter(
+          (s) => s !== streamer,
+        );
+        return newTeam1Streamers;
+      });
+    } else if (setTeam2Streamers) {
+      setTeam2Streamers((prevStreamers) => {
+        const newTeam2Streamers = [...prevStreamers].filter(
+          (s) => s !== streamer,
+        );
+        return newTeam2Streamers;
+      });
+    }
   };
 
   useEffect(() => {
@@ -88,15 +116,15 @@ const TwitchStreamPlayer = ({
     >
       <div className="flex h-full w-full flex-col">
         <div
-          className={`flex w-full overflow-hidden bg-[#18181a] duration-1000 ease-in-out ${showSearchBar ? "max-h-full" : "max-h-0"}`}
+          className={`flex w-full overflow-hidden bg-[#18181a] duration-500 ease-in-out ${showSearchBar ? "max-h-full" : "max-h-0"}`}
         >
           <div className="m-2 flex w-full items-center justify-between">
             <div className="flex w-full">
               <input
-                className="z-10 w-36 rounded-l-[0.375rem] border-1 border-[#49494c] bg-[#18181a] px-[0.625rem] py-[0.3125rem] text-[0.875rem] font-normal text-[#eeeef1] placeholder-[#959595] outline-none focus:rounded-r-none focus:border focus:border-[#a674f1] focus:ring-2 focus:ring-[#a674f1]"
+                className="z-10 w-28 rounded-l-[0.375rem] border-1 border-[#49494c] bg-[#18181a] px-[0.625rem] py-[0.3125rem] text-[0.875rem] font-normal text-[#eeeef1] placeholder-[#959595] outline-none focus:rounded-r-none focus:border focus:border-[#a674f1] focus:ring-2 focus:ring-[#a674f1]"
                 type="text"
                 value={streamChannel}
-                placeholder={`Channel ${streamerIndex + 1}`}
+                placeholder={`Channel`}
                 onKeyDown={handleEnterKeyPress}
                 onChange={onStreamChannelChange}
               />
@@ -106,7 +134,7 @@ const TwitchStreamPlayer = ({
                 title="Search Streamer"
                 onClick={handleSearchStreamerButton}
               >
-                Search
+                <SearchIconSvg className="h-4 w-4 text-white" />
               </Button>
             </div>
 
@@ -131,7 +159,9 @@ const TwitchStreamPlayer = ({
               {!selectedExpandedStream && (
                 <Button
                   className="hover:bg-[#FFAAA8] hover:text-black"
-                  onClick={handleRemoveStreamPlayer}
+                  onClick={() => {
+                    handleRemoveStreamPlayer(streamer);
+                  }}
                   title="Close"
                 >
                   <CloseIconSvg className="h-4 w-4" />
@@ -144,7 +174,7 @@ const TwitchStreamPlayer = ({
         <iframe
           key={streamer + "-" + refreshCount}
           className="h-full w-full"
-          src={`https://player.twitch.tv/?channel=${streamer}&parent=${window.location.hostname}${streamerIndex === 0 ? "&muted=false" : "&muted=true"}`}
+          src={`https://player.twitch.tv/?channel=${streamer}&parent=${window.location.hostname}`}
           allowFullScreen
         />
       </div>
