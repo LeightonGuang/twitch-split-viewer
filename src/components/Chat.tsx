@@ -67,7 +67,7 @@ const Chat = ({
 
         <div
           // TODO: Add animation
-          className={`flex h-full overflow-hidden duration-750 ease-in-out ${showChatSelect ? "max-h-full" : "hidden"}`}
+          className={`${showChatSelect ? "max-h-full" : "hidden"}`}
         >
           {showChat &&
             !selectedExpandedStream &&
@@ -140,8 +140,6 @@ const Chat = ({
                     </Button>
                   )}
                 </div>
-
-                <div className="border-1 border-[#302f35]" />
 
                 <div className="flex flex-wrap gap-2">
                   {team2Streamers.map((streamer, i) => (
