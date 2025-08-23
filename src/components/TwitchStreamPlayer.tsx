@@ -119,12 +119,12 @@ const TwitchStreamPlayer = ({
           className={`flex w-full overflow-hidden bg-[#18181a] duration-500 ease-in-out ${showSearchBar ? "max-h-full" : "max-h-0"}`}
         >
           <div className="m-2 flex w-full items-center justify-between">
-            <div className="flex w-full">
+            <div className="flex w-full items-center">
               <input
-                className="z-10 w-28 rounded-l-[0.375rem] border-1 border-[#49494c] bg-[#18181a] px-[0.625rem] py-[0.3125rem] text-[0.875rem] font-normal text-[#eeeef1] placeholder-[#959595] outline-none focus:rounded-r-none focus:border focus:border-[#a674f1] focus:ring-2 focus:ring-[#a674f1]"
+                className="z-10 w-28 rounded-l-[0.375rem] border-1 border-[#d4d4d6] bg-[#18181a] px-[0.625rem] py-[0.3125rem] text-[0.875rem] font-normal text-[#eeeef1] placeholder-[#959595] outline-none hover:border-[#858488] focus:rounded-r-none focus:border focus:border-[#a674f1] focus:ring-2 focus:ring-[#a674f1]"
                 type="text"
                 value={streamChannel}
-                placeholder={`Channel`}
+                placeholder={`Search`}
                 onKeyDown={handleEnterKeyPress}
                 onChange={onStreamChannelChange}
               />
