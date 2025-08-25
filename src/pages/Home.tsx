@@ -1,5 +1,8 @@
-import Chat from "../components/Chat";
 import { useState, useEffect } from "react";
+
+import Help from "../components/Help";
+import Sidebar from "../components/Sidebar";
+import ModeSelect from "../components/ModeSelect";
 import StreamsGrid from "../components/StreamsGrid";
 import TwitchStreamPlayer from "../components/TwitchStreamPlayer";
 
@@ -19,7 +22,13 @@ const HomePage = ({
   const [selectedExpandedStream, setSelectedExpandedStream] =
     useState<string>("");
   const [showChat, setShowChat] = useState<boolean>(true);
+  const [showHelp, setShowHelp] = useState<boolean>(false);
   const [isMobile, setIsMobile] = useState<boolean>(false);
+
+  const hasParameter =
+    streamers.length > 0 ||
+    team1Streamers.length > 0 ||
+    team2Streamers.length > 0;
 
   useEffect(() => {
     if (channelList.length > 0) {
@@ -27,8 +36,6 @@ const HomePage = ({
     } else if (team1List.length > 0 || team2List.length > 0) {
       setTeam1Streamers(team1List);
       setTeam2Streamers(team2List);
-    } else {
-      setStreamers(["twitch"]);
     }
   }, []);
 
@@ -56,34 +63,51 @@ const HomePage = ({
   }, []);
 
   return (
-    <section className="h-dvh w-full overflow-y-clip bg-[#0e0e10]">
+    <section
+      className="h-dvh w-full overflow-y-clip bg-[#0e0e10]"
+      onKeyDown={(e) => {
+        if (e.key === "Escape") {
+          setShowHelp(false);
+        }
+      }}
+    >
       <div className="flex">
-        {selectedExpandedStream ? (
-          <TwitchStreamPlayer
-            className="h-dvh w-full"
-            streamer={selectedExpandedStream}
-            streamers={streamers}
-            setStreamers={setStreamers}
-            selectedExpandedStream={selectedExpandedStream}
-            setSelectedExpandedStream={setSelectedExpandedStream}
-          />
+        {hasParameter ? (
+          <>
+            {selectedExpandedStream ? (
+              <TwitchStreamPlayer
+                className="h-dvh w-full"
+                streamer={selectedExpandedStream}
+                streamers={streamers}
+                setStreamers={setStreamers}
+                selectedExpandedStream={selectedExpandedStream}
+                setSelectedExpandedStream={setSelectedExpandedStream}
+              />
+            ) : (
+              <StreamsGrid
+                className="max-h-dvh w-full"
+                isMobile={isMobile}
+                streamers={streamers}
+                setStreamers={setStreamers}
+                team1Streamers={team1Streamers}
+                setTeam1Streamers={setTeam1Streamers}
+                team2Streamers={team2Streamers}
+                setTeam2Streamers={setTeam2Streamers}
+                selectedStreamerChat={selectedStreamerChat}
+                selectedExpandedStream={selectedExpandedStream}
+                setSelectedExpandedStream={setSelectedExpandedStream}
+              />
+            )}
+          </>
         ) : (
-          <StreamsGrid
-            className="max-h-dvh w-full"
-            isMobile={isMobile}
-            streamers={streamers}
+          <ModeSelect
             setStreamers={setStreamers}
-            team1Streamers={team1Streamers}
             setTeam1Streamers={setTeam1Streamers}
-            team2Streamers={team2Streamers}
             setTeam2Streamers={setTeam2Streamers}
-            selectedStreamerChat={selectedStreamerChat}
-            selectedExpandedStream={selectedExpandedStream}
-            setSelectedExpandedStream={setSelectedExpandedStream}
           />
         )}
 
-        <Chat
+        <Sidebar
           streamers={streamers}
           setStreamers={setStreamers}
           team1Streamers={team1Streamers}
@@ -92,11 +116,14 @@ const HomePage = ({
           setTeam2Streamers={setTeam2Streamers}
           showChat={showChat}
           setShowChat={setShowChat}
+          setShowHelp={setShowHelp}
           selectedStreamerChat={selectedStreamerChat}
           setSelectedStreamerChat={setSelectedStreamerChat}
           selectedExpandedStream={selectedExpandedStream}
         />
       </div>
+
+      {showHelp && <Help setShowHelp={setShowHelp} />}
     </section>
   );
 };
