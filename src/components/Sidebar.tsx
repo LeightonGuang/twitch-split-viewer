@@ -16,6 +16,7 @@ const Chat = ({
   setTeam2Streamers,
   showChat,
   setShowChat,
+  setShowHelp,
   selectedStreamerChat,
   setSelectedStreamerChat,
   selectedExpandedStream,
@@ -29,6 +30,7 @@ const Chat = ({
   setTeam2Streamers: React.Dispatch<React.SetStateAction<string[]>>;
   showChat: boolean;
   setShowChat: React.Dispatch<React.SetStateAction<boolean>>;
+  setShowHelp: React.Dispatch<React.SetStateAction<boolean>>;
   selectedStreamerChat: string;
   setSelectedStreamerChat: (streamer: string) => void;
   selectedExpandedStream: string;
@@ -72,7 +74,7 @@ const Chat = ({
           {showChat &&
             !selectedExpandedStream &&
             (streamers.length > 0 ? (
-              <div className="flex gap-2">
+              <div className="flex flex-wrap gap-2">
                 {streamers.map((streamer, i) => (
                   <Button
                     key={streamer}
@@ -176,31 +178,43 @@ const Chat = ({
                   )}
                 </div>
               </div>
-            ) : (
-              "cast"
-            ))}
+            ) : null)}
         </div>
+
+        <button
+          className="p-2 leading-none text-gray-500 hover:cursor-pointer hover:text-gray-400"
+          onClick={() => {
+            setShowHelp(true);
+          }}
+        >
+          ?
+        </button>
       </div>
+
+      {/* Hide/show chat select button */}
 
       {showChat &&
         !selectedExpandedStream &&
-        (team1Streamers.length > 0 || team2Streamers.length > 0) && (
+        (streamers.length > 0 ||
+          team1Streamers.length > 0 ||
+          team2Streamers.length > 0) && (
           <div className="flex justify-center">
             <button
-              className="mx-2 my-1 flex w-full flex-col rounded-full bg-[#302f35] text-sm text-gray-400 hover:cursor-pointer hover:text-gray-300"
+              className="flex w-full justify-center p-2 hover:cursor-pointer hover:bg-[#36353b]"
+              title={showChatSelect ? "Hide Chat Select" : "Show Chat Select"}
               onClick={handleShowChatSelectOnClick}
             >
-              <span>
-                {showChatSelect ? "Hide Chat Select" : "Show Chat Select"}
-              </span>
+              <div className="h-[0.3125rem] w-[2.5rem] rounded-full bg-[#27262c]" />
             </button>
           </div>
         )}
 
+      {/* Twitch chat embed */}
+
       {showChat && (
         <iframe
           className="h-full w-full"
-          src={`https://www.twitch.tv/embed/${selectedExpandedStream || selectedStreamerChat}/chat?darkpopout&parent=${window.location.hostname}`}
+          src={`https://www.twitch.tv/embed/${selectedExpandedStream || selectedStreamerChat || "twitch"}/chat?darkpopout&parent=${window.location.hostname}`}
         />
       )}
     </div>
