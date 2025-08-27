@@ -31,7 +31,7 @@ To get started, simply search for a Twitch channel name in the search bar and ad
 
 #### Grid View Mode:
 
-To use Grid View Mode, simply add the <code style="color:#05df72">channels</code> parameter to the URL followed by a list of <code style="color:#87CEEB">channel names</code> you want to watch, seperated by commas, up to a maxiumum of 12 streams.
+To use Grid View Mode, simply add the <code style="color:lime">channels</code> parameter to the URL followed by a list of <code style="color:#87CEEB">channel names</code> you want to watch, seperated by commas, up to a maxiumum of 12 streams.
 
 For example:
 <code>[https://twitchsplitviewer.pages.dev/<span style="color:#05df72">?channels=</span><span style="color:#87CEEB">channel1,channel2,channel3</span>](https://twitchsplitviewer.pages.dev/?channels=channel1,channel2,channel3)</code>
