@@ -43,11 +43,6 @@ const Help = ({
         </div>
 
         <div>
-          <p>
-            To use grid view or team view modes, you can pass the appropriate
-            parameters in the URL like this:
-          </p>
-
           <div className="mt-4">
             <h3 className="flex items-center gap-2 text-lg font-medium">
               <GridViewIconSvg className="h-5 w-5" /> Grid View Mode:
