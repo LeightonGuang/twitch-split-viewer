@@ -49,10 +49,12 @@ const Chat = ({
       }`}
     >
       <div className="flex h-min w-full flex-wrap gap-2 p-2 text-white">
-        <SidebarToggle
-          showSidebar={showSidebar}
-          setShowSidebar={setShowSidebar}
-        />
+        {!showSidebar && (
+          <SidebarToggle
+            showSidebar={showSidebar}
+            setShowSidebar={setShowSidebar}
+          />
+        )}
 
         <div
           // TODO: Add animation
@@ -62,19 +64,22 @@ const Chat = ({
             <ChatSelect
               streamers={streamers}
               setStreamers={setStreamers}
+              showSidebar={showSidebar}
+              setShowSidebar={setShowSidebar}
               team1Streamers={team1Streamers}
               setTeam1Streamers={setTeam1Streamers}
               team2Streamers={team2Streamers}
               setTeam2Streamers={setTeam2Streamers}
               selectedStreamerChat={selectedStreamerChat}
               setSelectedStreamerChat={setSelectedStreamerChat}
+              setShowHelp={setShowHelp}
               isGridViewMode={isGridViewMode}
               isTeamViewMode={isTeamViewMode}
             />
           )}
         </div>
 
-        <HelpButton onClick={() => setShowHelp(true)} />
+        {!showSidebar && <HelpButton onClick={() => setShowHelp(true)} />}
       </div>
 
       {/* Show/Hide chat select button */}

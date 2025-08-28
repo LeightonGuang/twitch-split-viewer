@@ -1,31 +1,45 @@
-import { PlusIconSvg } from "../../assets/Icons";
 import Button from "../Button";
+import HelpButton from "./HelpButton";
+import SidebarToggle from "./SidebarToggle";
+
+import { PlusIconSvg } from "../../assets/Icons";
 
 const ChatSelect = ({
   streamers,
   setStreamers,
+  showSidebar,
+  setShowSidebar,
   team1Streamers,
   setTeam1Streamers,
   team2Streamers,
   setTeam2Streamers,
   selectedStreamerChat,
   setSelectedStreamerChat,
+  setShowHelp,
   isGridViewMode,
   isTeamViewMode,
 }: {
   streamers: string[];
   setStreamers: React.Dispatch<React.SetStateAction<string[]>>;
+  showSidebar: boolean;
+  setShowSidebar: React.Dispatch<React.SetStateAction<boolean>>;
   team1Streamers: string[];
   setTeam1Streamers: React.Dispatch<React.SetStateAction<string[]>>;
   team2Streamers: string[];
   setTeam2Streamers: React.Dispatch<React.SetStateAction<string[]>>;
   selectedStreamerChat: string;
   setSelectedStreamerChat: React.Dispatch<React.SetStateAction<string>>;
+  setShowHelp: React.Dispatch<React.SetStateAction<boolean>>;
   isGridViewMode: boolean;
   isTeamViewMode: boolean;
 }) =>
   isGridViewMode ? (
     <div className="flex flex-wrap gap-2">
+      <SidebarToggle
+        showSidebar={showSidebar}
+        setShowSidebar={setShowSidebar}
+      />
+
       {streamers.map((streamer, i) => (
         <Button
           key={streamer}
@@ -60,6 +74,10 @@ const ChatSelect = ({
   ) : isTeamViewMode ? (
     <div className="flex flex-col gap-2">
       <div className="flex flex-wrap gap-2">
+        <SidebarToggle
+          showSidebar={showSidebar}
+          setShowSidebar={setShowSidebar}
+        />
         {team1Streamers.map((streamer, i) => (
           <Button
             key={streamer}
@@ -123,6 +141,8 @@ const ChatSelect = ({
             </div>
           </Button>
         )}
+
+        <HelpButton onClick={() => setShowHelp(true)} />
       </div>
     </div>
   ) : null;
