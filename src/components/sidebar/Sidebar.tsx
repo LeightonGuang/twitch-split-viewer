@@ -38,18 +38,16 @@ const Chat = ({
   const isGridViewMode = streamers.length > 0;
   const isTeamViewMode = team1Streamers.length > 0 || team2Streamers.length > 0;
 
-  const handleShowChatSelectOnClick = () => {
-    setShowChatSelect(!showChatSelect);
-  };
-
   return (
     <div
       className={`${className} flex h-dvh max-w-[21.25rem] min-w-[3rem] flex-col bg-[#18181a] transition-[width] duration-750 ease-in-out ${
-        showSidebar ? "w-[30rem]" : "w-[3.75rem]"
+        showSidebar ? "w-[30rem]" : "w-[4.15rem]"
       }`}
     >
-      <div className="flex h-min w-full flex-wrap gap-2 p-2 text-white">
-        {!showSidebar && (
+      <div
+        className={`flex h-min w-full flex-wrap gap-2 px-3 py-2 text-white ${!showSidebar && "w-min flex-col gap-0"}`}
+      >
+        {(!showSidebar || !showChatSelect || selectedExpandedStream) && (
           <SidebarToggle
             showSidebar={showSidebar}
             setShowSidebar={setShowSidebar}
@@ -79,7 +77,9 @@ const Chat = ({
           )}
         </div>
 
-        {!showSidebar && <HelpButton onClick={() => setShowHelp(true)} />}
+        {(!showSidebar || !showChatSelect || selectedExpandedStream) && (
+          <HelpButton onClick={() => setShowHelp(true)} />
+        )}
       </div>
 
       {/* Show/Hide chat select button */}
@@ -91,7 +91,9 @@ const Chat = ({
             <button
               className="flex w-full justify-center p-2 hover:cursor-pointer hover:bg-[#36353b]"
               title={showChatSelect ? "Hide Chat Select" : "Show Chat Select"}
-              onClick={handleShowChatSelectOnClick}
+              onClick={() => {
+                setShowChatSelect(!showChatSelect);
+              }}
             >
               <div className="h-[0.3125rem] w-[2.5rem] rounded-full bg-[#27262c]" />
             </button>
