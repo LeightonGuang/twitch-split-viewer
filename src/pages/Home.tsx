@@ -1,7 +1,7 @@
 import { useState, useEffect } from "react";
 
 import Help from "../components/Help";
-import Sidebar from "../components/Sidebar";
+import Sidebar from "../components/sidebar/Sidebar";
 import ModeSelect from "../components/ModeSelect";
 import StreamsGrid from "../components/StreamsGrid";
 import TwitchStreamPlayer from "../components/TwitchStreamPlayer";
@@ -21,7 +21,7 @@ const HomePage = ({
   const [selectedStreamerChat, setSelectedStreamerChat] = useState<string>("");
   const [selectedExpandedStream, setSelectedExpandedStream] =
     useState<string>("");
-  const [showChat, setShowChat] = useState<boolean>(true);
+  const [showSidebar, setshowSidebar] = useState<boolean>(true);
   const [showHelp, setShowHelp] = useState<boolean>(false);
   const [isMobile, setIsMobile] = useState<boolean>(false);
 
@@ -51,7 +51,7 @@ const HomePage = ({
     const checkWidth = () => {
       const isMobile = window.innerWidth <= 768;
       setIsMobile(isMobile);
-      setShowChat(!isMobile);
+      setshowSidebar(!isMobile);
     };
 
     checkWidth();
@@ -114,8 +114,8 @@ const HomePage = ({
           setTeam1Streamers={setTeam1Streamers}
           team2Streamers={team2Streamers}
           setTeam2Streamers={setTeam2Streamers}
-          showChat={showChat}
-          setShowChat={setShowChat}
+          showSidebar={showSidebar}
+          setShowSidebar={setshowSidebar}
           setShowHelp={setShowHelp}
           selectedStreamerChat={selectedStreamerChat}
           setSelectedStreamerChat={setSelectedStreamerChat}
