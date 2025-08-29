@@ -6,9 +6,23 @@ const AppContent = () => {
   const queryParams: URLSearchParams = new URLSearchParams(location.search);
 
   const channelList: string[] =
-    queryParams.get("channels")?.split(",").slice(0, 12) || [];
-  const team1List: string[] = queryParams.get("team1")?.split(",") || [];
-  const team2List: string[] = queryParams.get("team2")?.split(",") || [];
+    queryParams
+      .get("channels")
+      ?.split(",")
+      .slice(0, 12)
+      .filter((channel) => channel != "") || [];
+  const team1List: string[] =
+    queryParams
+      .get("team1")
+      ?.split(",")
+      .slice(0, 6)
+      .filter((channel) => channel != "") || [];
+  const team2List: string[] =
+    queryParams
+      .get("team2")
+      ?.split(",")
+      .slice(0, 6)
+      .filter((channel) => channel != "") || [];
 
   return (
     <Routes>
