@@ -118,6 +118,7 @@ const HomePage = ({
           setTeam2Streamers={setTeam2Streamers}
           showSidebar={showSidebar}
           setShowSidebar={setshowSidebar}
+          showHelp={showHelp}
           setShowHelp={setShowHelp}
           selectedStreamerChat={selectedStreamerChat}
           setSelectedStreamerChat={setSelectedStreamerChat}
