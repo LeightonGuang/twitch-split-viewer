@@ -42,8 +42,10 @@ const HomePage = ({
   useEffect(() => {
     if (streamers.length > 0) {
       setSelectedStreamerChat(streamers[0]);
-    } else if (team1Streamers.length > 0 || team2Streamers.length > 0) {
+    } else if (team1Streamers.length > 0) {
       setSelectedStreamerChat(team1Streamers[0]);
+    } else if (team2Streamers.length > 0) {
+      setSelectedStreamerChat(team2Streamers[0]);
     }
   }, [streamers, team1Streamers, team2Streamers]);
 
