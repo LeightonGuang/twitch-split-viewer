@@ -1,4 +1,3 @@
-import Button from "../Button";
 import { ExpandSidebarSvg, MinimizeSidebarSvg } from "../../assets/Icons";
 
 const SidebarToggle = ({
@@ -9,22 +8,23 @@ const SidebarToggle = ({
   setShowSidebar: React.Dispatch<React.SetStateAction<boolean>>;
 }) =>
   showSidebar ? (
-    <Button
+    <button
+      className="p-2 leading-none text-gray-500 hover:cursor-pointer hover:text-gray-400"
+      title="Minimize Sidebar"
       onClick={() => {
         setShowSidebar(false);
       }}
-      title="Minimize Sidebar"
     >
       <MinimizeSidebarSvg className="h-4 w-4" />
-    </Button>
+    </button>
   ) : (
-    <Button
-      className="w-min"
-      onClick={() => setShowSidebar(true)}
+    <button
+      className="p-2 leading-none text-gray-500 hover:cursor-pointer hover:text-gray-400"
       title="Expand Sidebar"
+      onClick={() => setShowSidebar(true)}
     >
       <ExpandSidebarSvg className="h-4 w-4" />
-    </Button>
+    </button>
   );
 
 export default SidebarToggle;
