@@ -1,4 +1,4 @@
-export const ExpandIconSvg = ({ ...props }) => (
+export const ExpandIconSvg = ({ ...props }: React.SVGProps<SVGSVGElement>) => (
   <svg
     width="100%"
     height="100%"
@@ -17,7 +17,7 @@ export const ExpandIconSvg = ({ ...props }) => (
   </svg>
 );
 
-export const CloseIconSvg = ({ ...props }) => (
+export const CloseIconSvg = ({ ...props }: React.SVGProps<SVGSVGElement>) => (
   <svg
     width="100%"
     height="100%"
@@ -36,7 +36,9 @@ export const CloseIconSvg = ({ ...props }) => (
   </svg>
 );
 
-export const MinimizeIconSvg = ({ ...props }) => (
+export const MinimizeIconSvg = ({
+  ...props
+}: React.SVGProps<SVGSVGElement>) => (
   <svg
     width="100%"
     height="100%"
@@ -55,7 +57,7 @@ export const MinimizeIconSvg = ({ ...props }) => (
   </svg>
 );
 
-export const PlusIconSvg = ({ ...props }) => (
+export const PlusIconSvg = ({ ...props }: React.SVGProps<SVGSVGElement>) => (
   <svg
     width="100%"
     height="100%"
@@ -74,7 +76,9 @@ export const PlusIconSvg = ({ ...props }) => (
   </svg>
 );
 
-export const MinimizeSidebarSvg = ({ ...props }) => (
+export const MinimizeSidebarSvg = ({
+  ...props
+}: React.SVGProps<SVGSVGElement>) => (
   <svg width="100%" height="100%" version="1.1" viewBox="0 0 20 20" {...props}>
     <path
       d="M4 16V4H2v12h2zm9-1-1.5-1.5L14 11H6V9h8l-2.5-2.5L13 5l5 5-5 5z"
@@ -83,7 +87,9 @@ export const MinimizeSidebarSvg = ({ ...props }) => (
   </svg>
 );
 
-export const ExpandSidebarSvg = ({ ...props }) => (
+export const ExpandSidebarSvg = ({
+  ...props
+}: React.SVGProps<SVGSVGElement>) => (
   <svg width="100%" height="100%" viewBox="0 0 20 20" {...props}>
     <path
       d="M16 16V4h2v12h-2zM6 9l2.501-2.5-1.5-1.5-5 5 5 5 1.5-1.5-2.5-2.5h8V9H6z"
@@ -92,7 +98,7 @@ export const ExpandSidebarSvg = ({ ...props }) => (
   </svg>
 );
 
-export const RefreshIconSvg = ({ ...props }) => (
+export const RefreshIconSvg = ({ ...props }: React.SVGProps<SVGSVGElement>) => (
   <svg
     width="100%"
     height="100%"
@@ -111,7 +117,7 @@ export const RefreshIconSvg = ({ ...props }) => (
   </svg>
 );
 
-export const SearchIconSvg = ({ ...props }) => (
+export const SearchIconSvg = ({ ...props }: React.SVGProps<SVGSVGElement>) => (
   <svg
     width="100%"
     height="100%"
@@ -130,7 +136,9 @@ export const SearchIconSvg = ({ ...props }) => (
   </svg>
 );
 
-export const GridViewIconSvg = ({ ...props }) => (
+export const GridViewIconSvg = ({
+  ...props
+}: React.SVGProps<SVGSVGElement>) => (
   <svg
     width="100%"
     height="100%"
@@ -149,7 +157,9 @@ export const GridViewIconSvg = ({ ...props }) => (
   </svg>
 );
 
-export const TeamViewIconSvg = ({ ...props }) => (
+export const TeamViewIconSvg = ({
+  ...props
+}: React.SVGProps<SVGSVGElement>) => (
   <svg
     width="100%"
     height="100%"
@@ -168,7 +178,7 @@ export const TeamViewIconSvg = ({ ...props }) => (
   </svg>
 );
 
-export const EditIconSvg = ({ ...props }) => (
+export const EditIconSvg = ({ ...props }: React.SVGProps<SVGSVGElement>) => (
   <svg
     width="100%"
     height="100%"
@@ -201,5 +211,24 @@ export const DragIconSvg = ({
     {...props}
   >
     <path d="M12.5 11a1.5 1.5 0 1 0 0 3 1.5 1.5 0 0 0 0-3zm0-10a1.5 1.5 0 1 0 0 3 1.5 1.5 0 0 0 0-3zm-5 0a1.5 1.5 0 1 0 0 3 1.5 1.5 0 0 0 0-3zM6 7.5a1.5 1.5 0 1 1 3 0 1.5 1.5 0 0 1-3 0zM12.5 6a1.5 1.5 0 1 0 0 3 1.5 1.5 0 0 0 0-3zM6 12.5a1.5 1.5 0 1 1 3 0 1.5 1.5 0 0 1-3 0zm5 5a1.5 1.5 0 1 1 3 0 1.5 1.5 0 0 1-3 0zM7.5 16a1.5 1.5 0 1 0 0 3 1.5 1.5 0 0 0 0-3z" />
+  </svg>
+);
+
+export const ShareIconSvg = ({ ...props }: React.SVGProps<SVGSVGElement>) => (
+  <svg
+    width="100%"
+    height="100%"
+    viewBox="0 0 24 24"
+    fill="none"
+    xmlns="http://www.w3.org/2000/svg"
+    {...props}
+  >
+    <path
+      d="M20.7914 12.6074C21.0355 12.3981 21.1575 12.2935 21.2023 12.169C21.2415 12.0598 21.2415 11.9402 21.2023 11.831C21.1575 11.7065 21.0355 11.6018 20.7914 11.3926L12.3206 4.13196C11.9004 3.77176 11.6903 3.59166 11.5124 3.58725C11.3578 3.58342 11.2101 3.65134 11.1124 3.77122C11 3.90915 11 4.18589 11 4.73936V9.03462C8.86532 9.40807 6.91159 10.4897 5.45971 12.1139C3.87682 13.8845 3.00123 16.1759 3 18.551V19.1629C4.04934 17.8989 5.35951 16.8765 6.84076 16.1659C8.1467 15.5394 9.55842 15.1683 11 15.0705V19.2606C11 19.8141 11 20.0908 11.1124 20.2288C11.2101 20.3486 11.3578 20.4166 11.5124 20.4127C11.6903 20.4083 11.9004 20.2282 12.3206 19.868L20.7914 12.6074Z"
+      stroke="currentColor"
+      strokeWidth="2"
+      strokeLinecap="round"
+      strokeLinejoin="round"
+    />
   </svg>
 );
