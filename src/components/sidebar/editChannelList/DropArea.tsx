@@ -40,8 +40,18 @@ const DropArea = ({
 
         if (draggedChannel.from === "streamers" && setStreamers) {
           setStreamers((prevStreamers) => {
-            const updatedStreamers = [...prevStreamers];
+            const updatedStreamers = [...prevStreamers].filter(
+              (s) => s !== draggedChannel.channelName,
+            );
             updatedStreamers.splice(draggedChannel.boxIndex, 1);
+
+            if (inside === "streamers") {
+              updatedStreamers.splice(
+                dropAreaIndex,
+                0,
+                draggedChannel.channelName,
+              );
+            }
             return updatedStreamers;
           });
         } else if (
