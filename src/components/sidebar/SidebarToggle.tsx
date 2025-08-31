@@ -3,9 +3,11 @@ import { ExpandSidebarSvg, MinimizeSidebarSvg } from "../../assets/Icons";
 const SidebarToggle = ({
   showSidebar,
   setShowSidebar,
+  setshowEditChannelList,
 }: {
   showSidebar: boolean;
   setShowSidebar: React.Dispatch<React.SetStateAction<boolean>>;
+  setshowEditChannelList: React.Dispatch<React.SetStateAction<boolean>>;
 }) =>
   showSidebar ? (
     <button
@@ -13,6 +15,7 @@ const SidebarToggle = ({
       title="Minimize Sidebar"
       onClick={() => {
         setShowSidebar(false);
+        setshowEditChannelList(false);
       }}
     >
       <MinimizeSidebarSvg className="h-4 w-4" />
