@@ -17,7 +17,7 @@ const Help = ({
     children: React.ReactNode;
   }) => (
     <code
-      className={`${className} rounded-md border-1 border-[#393939] bg-[#252525] p-1 text-sm text-gray-300`}
+      className={`${className} w-max rounded-md border-1 border-[#393939] bg-[#252525] p-1 text-sm text-gray-300`}
     >
       {children}
     </code>
@@ -54,6 +54,7 @@ const Help = ({
               <strong className="text-blue-300">channel names</strong> you want
               to watch, seperated by commas, up to a maximum of 12 names.
             </p>
+
             <p className="mt-1">For example:</p>
             <div className="mt-1">
               <UrlContainer>
@@ -79,12 +80,26 @@ const Help = ({
               <strong className="text-blue-300">channel names</strong> seperated
               by commas.
             </p>
-            <div className="mt-2">
+
+            <p className="mt-1">For example:</p>
+            <div className="mt-1 flex flex-col gap-2">
               <UrlContainer>
                 https://twitchsplitviewer.pages.dev/
                 <span className="text-green-400">?team1=</span>
                 <span className="text-blue-300">zekken,Zellsis,Demon1</span>
                 <span className="text-red-400">&team2=</span>
+                <span className="text-blue-300">dapr,johnqtcs,derrekow</span>
+              </UrlContainer>
+
+              <UrlContainer>
+                https://twitchsplitviewer.pages.dev/
+                <span className="text-green-400">?team1=</span>
+                <span className="text-blue-300">zekken,Zellsis,Demon1</span>
+              </UrlContainer>
+
+              <UrlContainer>
+                https://twitchsplitviewer.pages.dev/
+                <span className="text-red-400">?team2=</span>
                 <span className="text-blue-300">dapr,johnqtcs,derrekow</span>
               </UrlContainer>
             </div>
