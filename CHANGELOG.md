@@ -1,10 +1,20 @@
 # CHANGELOG
 
+# v2.1.0 31-08-2025
+
+- Redesign sidebar button to fit with edit and share button.
+- New share button to share user current channel list and view.
+- New Edit section to edit, add and remove channels from the list.
+  - Reorder the channels by drag and dropping them.
+  - Drag and drop channels from Team 1 to Team 2 and vice versa to move channels between teams.
+- Fixed url parameter to ignore empty string after comma.
+- New help modal.
+- New mode select when no channels are added.
+
 # v2.0.0 22-08-2025
 
 - New teams split view mode
 - Added support to get team1 and team2 list from query string parameters
-
 
 # v1.3.0 - 19-08-2025
 
