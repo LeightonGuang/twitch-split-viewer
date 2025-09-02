@@ -57,9 +57,7 @@ const ChatSelect = ({
           {streamers.length < 12 && (
             <Button
               onClick={() => {
-                if (streamers.length < 12) {
-                  setStreamers([...streamers, ""]);
-                }
+                if (!streamers.includes("")) setStreamers([...streamers, ""]);
               }}
               title="Add Channel"
             >
@@ -95,9 +93,8 @@ const ChatSelect = ({
           {team1Streamers.length < 6 && (
             <Button
               onClick={() => {
-                if (team1Streamers.length < 6) {
+                if (!team1Streamers.includes(""))
                   setTeam1Streamers([...team1Streamers, ""]);
-                }
               }}
               title="Add channel to team 1"
             >
@@ -131,9 +128,8 @@ const ChatSelect = ({
           {team2Streamers.length < 6 && (
             <Button
               onClick={() => {
-                if (team2Streamers.length < 6) {
+                if (!team2Streamers.includes(""))
                   setTeam2Streamers([...team2Streamers, ""]);
-                }
               }}
               title="Add channel to team 2"
             >
