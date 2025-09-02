@@ -28,6 +28,15 @@ const EditChannelList = ({
     team1Streamers.length > 0 ||
     team2Streamers.length > 0;
 
+  const AddButton = ({ ...props }: React.ComponentProps<"button">) => (
+    <button
+      {...props}
+      className={`flex justify-center rounded-md bg-[#27262c] p-2 hover:cursor-pointer hover:bg-[#36353b] ${streamers.length === 1 && "mt-2"}`}
+    >
+      <span className="text-[0.875rem] font-semibold">+ Add</span>
+    </button>
+  );
+
   return (
     <div className="h-full overflow-y-auto bg-[#0e0e10] dark:[color-scheme:dark]">
       <ViewModeToggle
@@ -59,6 +68,7 @@ const EditChannelList = ({
                   setStreamers={setStreamers}
                 />
               )}
+
               {streamers.map((streamer, i) => (
                 <React.Fragment key={i}>
                   <ChannelDraggableBox
@@ -75,7 +85,16 @@ const EditChannelList = ({
                     />
                   )}
                 </React.Fragment>
-              ))}
+              )) || <span className="text-sm text-[#adadb8]">No channels</span>}
+
+              {streamers.length < 12 && (
+                <AddButton
+                  onClick={() => {
+                    if (!streamers.includes(""))
+                      setStreamers([...streamers, ""]);
+                  }}
+                />
+              )}
             </ChannelContainer>
           </>
         ) : isTeamViewMode ? (
@@ -117,6 +136,15 @@ const EditChannelList = ({
                   No channels in team 1
                 </span>
               )}
+
+              {team1Streamers.length < 6 && (
+                <AddButton
+                  onClick={() => {
+                    if (!team1Streamers.includes(""))
+                      setTeam1Streamers([...team1Streamers, ""]);
+                  }}
+                />
+              )}
             </ChannelContainer>
 
             <h2 className="m-4 text-lg font-medium text-[#efeff1]">Team 2</h2>
@@ -151,11 +179,22 @@ const EditChannelList = ({
                   No channels in team 2
                 </span>
               )}
+
+              {team2Streamers.length < 6 && (
+                <AddButton
+                  onClick={() => {
+                    if (!team2Streamers.includes(""))
+                      setTeam2Streamers([...team2Streamers, ""]);
+                  }}
+                />
+              )}
             </ChannelContainer>
           </>
         ) : null
       ) : (
-        <div className="text-white">No channels</div>
+        <div className="m-2 rounded-md border-[#2f2e32] bg-[#18181a] border-1 p-2 text-white">
+          No mode selected
+        </div>
       )}
     </div>
   );
