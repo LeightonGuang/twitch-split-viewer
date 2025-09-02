@@ -40,14 +40,14 @@ const ModeSelect = ({
 
       <div className="mt-8 flex w-full items-center justify-center gap-8">
         <ModeSelectButton
-          header="Grid view mode"
+          header="Grid View Mode"
           description="Watch up to 12 Twitch streams simultaneously in grid view mode"
           icon={<GridViewIconSvg className="h-20 w-20" />}
           onClick={() => setStreamers(["twitch"])}
         />
 
         <ModeSelectButton
-          header="Teams view mode"
+          header="Teams View Mode"
           description="Watch up to 12 Twitch streams, 6 streams side by side grouped in teams"
           icon={<TeamViewIconSvg className="h-20 w-20" />}
           onClick={() => {
