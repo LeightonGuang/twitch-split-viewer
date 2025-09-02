@@ -1,9 +1,11 @@
-import { useRef } from "react";
+import { useEffect, useRef } from "react";
 import Button from "../../Button";
+import { SearchIconSvg } from "../../../assets/Icons";
 
 const EditInput = ({
   boxIndex,
   defaultValue,
+  isEditing,
   setIsEditing,
   setStreamers,
   setTeam1Streamers,
@@ -12,11 +14,12 @@ const EditInput = ({
 }: {
   boxIndex: number;
   defaultValue: string;
+  isEditing: boolean;
   setIsEditing: React.Dispatch<React.SetStateAction<boolean>>;
   setStreamers?: React.Dispatch<React.SetStateAction<string[]>>;
   setTeam1Streamers?: React.Dispatch<React.SetStateAction<string[]>>;
   setTeam2Streamers?: React.Dispatch<React.SetStateAction<string[]>>;
-} & React.InputHTMLAttributes<HTMLInputElement>) => {
+} & React.ComponentProps<"input">) => {
   const inputRef = useRef<HTMLInputElement>(null);
 
   const handleOnClick = () => {
@@ -45,6 +48,10 @@ const EditInput = ({
     setIsEditing(false);
   };
 
+  useEffect(() => {
+    if (isEditing) inputRef.current?.focus();
+  }, [isEditing]);
+
   return (
     <div className="flex w-full items-center">
       <input
@@ -56,15 +63,16 @@ const EditInput = ({
         type="text"
         onKeyDown={(e) => {
           if (e.key === "Enter") handleOnClick();
+          if (e.key === "Escape") setIsEditing(false);
         }}
       />
 
       <Button
         className="z-0 rounded-l-none rounded-r-[0.375rem] py-2 leading-normal"
-        title="Search Streamer"
+        title="Search"
         onClick={handleOnClick}
       >
-        edit
+        <SearchIconSvg className="h-4 w-4" />
       </Button>
     </div>
   );

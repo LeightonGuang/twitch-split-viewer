@@ -41,12 +41,13 @@ const ChannelDraggableBox = ({
         onMouseOver={() => setIsDraggable(true)}
         onMouseLeave={() => setIsDraggable(false)}
       />
-      <div className="flex h-min w-full justify-between">
+      <div className="flex h-min w-full items-center justify-between">
         <div className="text-[0.875rem] font-semibold">
           {isEditing ? (
             <EditInput
               defaultValue={channel}
               boxIndex={boxIndex}
+              isEditing={isEditing}
               setIsEditing={setIsEditing}
               setStreamers={setStreamers}
               setTeam1Streamers={setTeam1Streamers}
