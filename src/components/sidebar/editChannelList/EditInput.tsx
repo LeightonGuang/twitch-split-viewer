@@ -25,6 +25,8 @@ const EditInput = ({
   const handleOnClick = () => {
     const newChannel = inputRef.current?.value.trim();
 
+    if (newChannel === "") return;
+
     if (newChannel && setStreamers) {
       setStreamers((prevStreamers) => {
         const newStreamers = [...prevStreamers];
