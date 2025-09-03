@@ -113,9 +113,9 @@ const StreamsGrid = ({
     <div className={className}>
       {streamers.length > 0 ? (
         <div className={`grid h-dvh w-full ${defaultGridClass}`}>
-          {streamers.map((streamer) => (
+          {streamers.map((streamer, streamerIndex) => (
             <div
-              className={`${selectedStreamerChat === streamer && "bg-twitch-gradient p-[0.15rem]"}`}
+              className={`${selectedStreamerChat === streamer && "bg-twitch-gradient p-[0.15rem]"} ${streamerIndex === 0 && (streamers.length === 3 || streamers.length === 5 || streamers.length === 8) ? "col-span-2" : "col-span-1"}`}
               key={streamer}
             >
               <TwitchStreamPlayer
@@ -135,10 +135,10 @@ const StreamsGrid = ({
             <div
               className={`grid h-dvh w-full ${team1GridClass} bg-green-400 p-1`}
             >
-              {team1Streamers.map((streamer) => (
+              {team1Streamers.map((streamer, streamerIndex) => (
                 <TwitchStreamPlayer
                   key={streamer}
-                  className="h-full w-full"
+                  className={`h-full w-full ${streamerIndex === 0 && (team1Streamers.length === 3 || team1Streamers.length === 5) ? "col-span-2" : ""}`}
                   streamer={streamer}
                   setTeam1Streamers={setTeam1Streamers}
                   selectedExpandedStream={selectedExpandedStream}
@@ -152,10 +152,10 @@ const StreamsGrid = ({
             <div
               className={`grid h-dvh w-full ${team2GridClass} bg-red-400 p-1`}
             >
-              {team2Streamers.map((streamer) => (
+              {team2Streamers.map((streamer, streamerIndex) => (
                 <TwitchStreamPlayer
                   key={streamer}
-                  className="h-full w-full"
+                  className={`h-full w-full ${streamerIndex === 0 && (team2Streamers.length === 3 || team2Streamers.length === 5) ? "col-span-2" : ""}`}
                   streamer={streamer}
                   setTeam2Streamers={setTeam2Streamers}
                   selectedExpandedStream={selectedExpandedStream}
