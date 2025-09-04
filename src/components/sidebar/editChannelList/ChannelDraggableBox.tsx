@@ -56,8 +56,9 @@ const ChannelDraggableBox = ({
           ) : (
             <div
               onClick={() => {
-                setIsEditing(!isEditing);
+                setIsEditing(true);
               }}
+              title="Edit Channel"
             >
               {channel || (
                 <span className="font-medium text-gray-500">Empty</span>
