@@ -1,3 +1,4 @@
+import { useState } from "react";
 import { ChatIconSvg, EditIconSvg } from "../../assets/Icons";
 
 const EditChannelListButton = ({
@@ -8,28 +9,32 @@ const EditChannelListButton = ({
   showEditChannelList: boolean;
   setshowEditChannelList: React.Dispatch<React.SetStateAction<boolean>>;
   setShowSidebar: React.Dispatch<React.SetStateAction<boolean>>;
-}) =>
-  showEditChannelList ? (
+}) => {
+  const [isSwitching, setIsSwitching] = useState(false);
+
+  const switchIcon = (next: boolean) => {
+    setIsSwitching(true);
+
+    setTimeout(() => {
+      if (next) setShowSidebar(true);
+      setshowEditChannelList(next);
+      setIsSwitching(false);
+    }, 150);
+  };
+
+  return (
     <button
-      className={`p-2 leading-none text-gray-500 hover:cursor-pointer hover:text-gray-400`}
-      title="Twitch Chat"
-      onClick={() => {
-        setshowEditChannelList(false);
-      }}
+      className={`p-2 leading-none text-gray-500 transition-[filter,transform,color] duration-500 ease-in-out hover:cursor-pointer hover:text-gray-400 active:scale-97 ${isSwitching ? "blur-xs" : "blur-0"} `}
+      title={showEditChannelList ? "Twitch Chat" : "Edit Channel List"}
+      onClick={() => switchIcon(!showEditChannelList)}
     >
-      <ChatIconSvg className="h-4 w-4" />
-    </button>
-  ) : (
-    <button
-      className={`p-2 leading-none text-gray-500 hover:cursor-pointer hover:text-gray-400`}
-      title="Edit Channel List"
-      onClick={() => {
-        setShowSidebar(true);
-        setshowEditChannelList(true);
-      }}
-    >
-      <EditIconSvg className="h-4 w-4" />
+      {showEditChannelList ? (
+        <ChatIconSvg className="h-4 w-4" />
+      ) : (
+        <EditIconSvg className="h-4 w-4" />
+      )}
     </button>
   );
+};
 
 export default EditChannelListButton;
