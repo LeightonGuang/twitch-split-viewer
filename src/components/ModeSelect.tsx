@@ -24,10 +24,10 @@ const ModeSelect = ({
           onClick={() => setStreamers(["twitch"])}
         >
           <div className="grid grid-cols-2 grid-rows-2 gap-1">
-            <div className="aspect-video w-8 bg-zinc-600" />
-            <div className="aspect-video w-8 bg-zinc-600" />
-            <div className="aspect-video w-8 bg-zinc-600" />
-            <div className="aspect-video w-8 bg-zinc-600" />
+            <div className="aspect-video w-8 rounded-xs bg-zinc-600" />
+            <div className="aspect-video w-8 rounded-xs bg-zinc-600" />
+            <div className="aspect-video w-8 rounded-xs bg-zinc-600" />
+            <div className="aspect-video w-8 rounded-xs bg-zinc-600" />
           </div>
         </ModeSelectButton>
 
