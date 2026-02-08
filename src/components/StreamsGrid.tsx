@@ -3,6 +3,7 @@ import TwitchStreamPlayer from "./TwitchStreamPlayer";
 
 const StreamsGrid = ({
   className,
+  showSidebar,
   isMobile,
   streamers,
   setStreamers,
@@ -15,6 +16,7 @@ const StreamsGrid = ({
   setSelectedExpandedStream,
 }: {
   className?: string;
+  showSidebar: boolean;
   isMobile: boolean;
   streamers: string[];
   setStreamers: React.Dispatch<React.SetStateAction<string[]>>;
@@ -115,7 +117,7 @@ const StreamsGrid = ({
         <div className={`grid h-dvh w-full ${defaultGridClass}`}>
           {streamers.map((streamer, streamerIndex) => (
             <div
-              className={`${selectedStreamerChat === streamer && "bg-twitch-gradient p-[0.15rem]"} ${streamerIndex === 0 && (streamers.length === 3 || streamers.length === 5 || streamers.length === 8) ? "col-span-2" : "col-span-1"}`}
+              className={`${selectedStreamerChat === streamer && showSidebar && "bg-twitch-gradient p-[0.15rem]"} ${streamerIndex === 0 && (streamers.length === 3 || streamers.length === 5 || streamers.length === 8) ? "col-span-2" : "col-span-1"}`}
               key={streamer}
             >
               <TwitchStreamPlayer

@@ -23,6 +23,11 @@ const EditChannelList = ({
   isGridViewMode: boolean;
   isTeamViewMode: boolean;
 }) => {
+  const [draggingInfo, setDraggingInfo] = React.useState<{
+    boxIndex: number;
+    from: "streamers" | "team1Streamers" | "team2Streamers";
+  } | null>(null);
+
   const hasChannels =
     streamers.length > 0 ||
     team1Streamers.length > 0 ||
@@ -56,36 +61,44 @@ const EditChannelList = ({
             <div className="m-4">
               <h2 className="text-lg font-medium text-[#efeff1]">Streamers</h2>
               <p className="text-sm text-[#adadb8]">
-                Edit, add, reorder and remove streamers here
+                Add, edit, reorder and remove streamers here
               </p>
             </div>
 
             <ChannelContainer>
-              {streamers.length > 1 && (
-                <DropArea
-                  inside="streamers"
-                  dropAreaIndex={0}
-                  setStreamers={setStreamers}
-                />
-              )}
-
               {streamers.map((streamer, i) => (
                 <React.Fragment key={i}>
-                  <ChannelDraggableBox
-                    from="streamers"
-                    channel={streamer}
-                    boxIndex={i}
-                    setStreamers={setStreamers}
-                  />
                   {streamers.length > 1 && (
                     <DropArea
                       inside="streamers"
-                      dropAreaIndex={i + 1}
+                      dropAreaIndex={i}
                       setStreamers={setStreamers}
+                      draggingInfo={draggingInfo}
+                      setDraggingInfo={setDraggingInfo}
                     />
                   )}
+
+                  {
+                    <ChannelDraggableBox
+                      from="streamers"
+                      channel={streamer}
+                      boxIndex={i}
+                      setStreamers={setStreamers}
+                      setDraggingInfo={setDraggingInfo}
+                    />
+                  }
                 </React.Fragment>
-              )) || <span className="text-sm text-[#adadb8]">No channels</span>}
+              ))}
+
+              {streamers.length > 1 && (
+                <DropArea
+                  inside="streamers"
+                  dropAreaIndex={streamers.length}
+                  setStreamers={setStreamers}
+                  draggingInfo={draggingInfo}
+                  setDraggingInfo={setDraggingInfo}
+                />
+              )}
 
               {streamers.length < 12 && (
                 <AddButton
@@ -112,6 +125,8 @@ const EditChannelList = ({
                 dropAreaIndex={0}
                 setTeam1Streamers={setTeam1Streamers}
                 setTeam2Streamers={setTeam2Streamers}
+                draggingInfo={draggingInfo}
+                setDraggingInfo={setDraggingInfo}
               />
 
               {team1Streamers.length > 0 ? (
@@ -122,17 +137,20 @@ const EditChannelList = ({
                       boxIndex={i}
                       channel={streamer}
                       setTeam1Streamers={setTeam1Streamers}
+                      setDraggingInfo={setDraggingInfo}
                     />
                     <DropArea
                       inside="team1Streamers"
                       dropAreaIndex={i + 1}
                       setTeam1Streamers={setTeam1Streamers}
                       setTeam2Streamers={setTeam2Streamers}
+                      draggingInfo={draggingInfo}
+                      setDraggingInfo={setDraggingInfo}
                     />
                   </React.Fragment>
                 ))
               ) : (
-                <span className="text-sm text-[#adadb8]">
+                <span className="mb-2 text-sm text-[#adadb8]">
                   No channels in team 1
                 </span>
               )}
@@ -155,6 +173,8 @@ const EditChannelList = ({
                 dropAreaIndex={0}
                 setTeam1Streamers={setTeam1Streamers}
                 setTeam2Streamers={setTeam2Streamers}
+                draggingInfo={draggingInfo}
+                setDraggingInfo={setDraggingInfo}
               />
 
               {team2Streamers.length > 0 ? (
@@ -165,17 +185,20 @@ const EditChannelList = ({
                       channel={streamer}
                       boxIndex={i}
                       setTeam2Streamers={setTeam2Streamers}
+                      setDraggingInfo={setDraggingInfo}
                     />
                     <DropArea
                       inside="team2Streamers"
                       dropAreaIndex={i + 1}
                       setTeam1Streamers={setTeam1Streamers}
                       setTeam2Streamers={setTeam2Streamers}
+                      draggingInfo={draggingInfo}
+                      setDraggingInfo={setDraggingInfo}
                     />
                   </React.Fragment>
                 ))
               ) : (
-                <span className="text-sm text-[#adadb8]">
+                <span className="mb-2 text-sm text-[#adadb8]">
                   No channels in team 2
                 </span>
               )}
@@ -192,7 +215,7 @@ const EditChannelList = ({
           </>
         ) : null
       ) : (
-        <div className="m-2 rounded-md border-[#2f2e32] bg-[#18181a] border-1 p-2 text-white">
+        <div className="m-2 rounded-md border-1 border-[#2f2e32] bg-[#18181a] p-2 text-white">
           No mode selected
         </div>
       )}

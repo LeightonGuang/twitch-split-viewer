@@ -9,6 +9,7 @@ const ChannelDraggableBox = ({
   setStreamers,
   setTeam1Streamers,
   setTeam2Streamers,
+  setDraggingInfo,
 }: {
   from: "streamers" | "team1Streamers" | "team2Streamers";
   channel: string;
@@ -16,6 +17,12 @@ const ChannelDraggableBox = ({
   setStreamers?: React.Dispatch<React.SetStateAction<string[]>>;
   setTeam1Streamers?: React.Dispatch<React.SetStateAction<string[]>>;
   setTeam2Streamers?: React.Dispatch<React.SetStateAction<string[]>>;
+  setDraggingInfo?: React.Dispatch<
+    React.SetStateAction<{
+      boxIndex: number;
+      from: "streamers" | "team1Streamers" | "team2Streamers";
+    } | null>
+  >;
 }) => {
   const [isDraggable, setIsDraggable] = useState(false);
   const [isEditing, setIsEditing] = useState(false);
@@ -25,6 +32,10 @@ const ChannelDraggableBox = ({
       className="flex h-min w-full items-center gap-2 rounded-md bg-[#27262c] p-2"
       draggable={isDraggable}
       onDragStart={(e) => {
+        setDraggingInfo?.({
+          boxIndex,
+          from,
+        });
         e.dataTransfer.setData(
           "text/plain",
           JSON.stringify({
@@ -33,6 +44,9 @@ const ChannelDraggableBox = ({
             from: from,
           }),
         );
+      }}
+      onDragEnd={() => {
+        setDraggingInfo?.(null);
       }}
     >
       <DragIconSvg
@@ -56,8 +70,9 @@ const ChannelDraggableBox = ({
           ) : (
             <div
               onClick={() => {
-                setIsEditing(!isEditing);
+                setIsEditing(true);
               }}
+              title="Edit Channel"
             >
               {channel || (
                 <span className="font-medium text-gray-500">Empty</span>
