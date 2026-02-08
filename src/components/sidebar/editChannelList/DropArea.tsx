@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 
 const DropArea = ({
   inside,
@@ -7,6 +7,7 @@ const DropArea = ({
   setTeam1Streamers,
   setTeam2Streamers,
   draggingInfo,
+  setDraggingInfo,
   ...props
 }: {
   inside: "streamers" | "team1Streamers" | "team2Streamers";
@@ -18,8 +19,20 @@ const DropArea = ({
     boxIndex: number;
     from: "streamers" | "team1Streamers" | "team2Streamers";
   } | null;
+  setDraggingInfo?: React.Dispatch<
+    React.SetStateAction<{
+      boxIndex: number;
+      from: "streamers" | "team1Streamers" | "team2Streamers";
+    } | null>
+  >;
 } & React.HTMLAttributes<HTMLDivElement>) => {
   const [show, setShow] = useState(false);
+
+  useEffect(() => {
+    if (!draggingInfo) {
+      setShow(false);
+    }
+  }, [draggingInfo]);
 
   // If we are showing "streamers" and the drag source is "streamers",
   // and dropAreaIndex matches draggingInfo.boxIndex or draggingInfo.boxIndex + 1,
@@ -42,6 +55,7 @@ const DropArea = ({
   const onDrop = (e: React.DragEvent<HTMLDivElement>) => {
     e.preventDefault();
     setShow(false);
+    setDraggingInfo?.(null);
 
     const draggedChannel: {
       channelName: string;
@@ -155,25 +169,37 @@ const DropArea = ({
 
   const onDragLeave = (e: React.DragEvent<HTMLDivElement>) => {
     e.preventDefault();
+    if (e.relatedTarget && e.currentTarget.contains(e.relatedTarget as Node)) {
+      return;
+    }
     setShow(false);
+  };
+
+  const getDropAreaClass = () => {
+    if (isSelf) {
+      return "h-2 opacity-0 pointer-events-none border-0 p-0 overflow-hidden";
+    }
+    if (show) {
+      return "flex h-14 items-center justify-center rounded-md border-2 border-purple-500 py-2";
+    }
+    if (draggingInfo) {
+      return "flex h-4 items-center justify-center rounded-md border-2 border-dashed border-gray-600 bg-gray-800/30 opacity-70";
+    }
+    return "h-2";
   };
 
   return (
     <div
       {...props}
-      className={`w-full transition-all duration-150 ${
-        show
-          ? "flex h-14 items-center justify-center rounded-md border-2 border-purple-500 py-2"
-          : "h-2"
-      } ${isSelf ? "pointer-events-none opacity-0" : ""}`}
+      className={`w-full transition-all duration-150 ${getDropAreaClass()}`}
       onDragEnter={onDragEnter}
       onDragOver={onDragOver}
       onDrop={onDrop}
       onDragLeave={onDragLeave}
     >
-      {show && (
+      {(show || (draggingInfo && !isSelf)) && (
         <div className="pointer-events-none text-xs text-white opacity-70">
-          Drop here
+          {show ? "Drop here" : ""}
         </div>
       )}
     </div>

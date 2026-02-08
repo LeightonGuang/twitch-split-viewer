@@ -74,6 +74,7 @@ const EditChannelList = ({
                       dropAreaIndex={i}
                       setStreamers={setStreamers}
                       draggingInfo={draggingInfo}
+                      setDraggingInfo={setDraggingInfo}
                     />
                   )}
 
@@ -95,6 +96,7 @@ const EditChannelList = ({
                   dropAreaIndex={streamers.length}
                   setStreamers={setStreamers}
                   draggingInfo={draggingInfo}
+                  setDraggingInfo={setDraggingInfo}
                 />
               )}
 
@@ -124,6 +126,7 @@ const EditChannelList = ({
                 setTeam1Streamers={setTeam1Streamers}
                 setTeam2Streamers={setTeam2Streamers}
                 draggingInfo={draggingInfo}
+                setDraggingInfo={setDraggingInfo}
               />
 
               {team1Streamers.length > 0 ? (
@@ -142,6 +145,7 @@ const EditChannelList = ({
                       setTeam1Streamers={setTeam1Streamers}
                       setTeam2Streamers={setTeam2Streamers}
                       draggingInfo={draggingInfo}
+                      setDraggingInfo={setDraggingInfo}
                     />
                   </React.Fragment>
                 ))
@@ -170,6 +174,7 @@ const EditChannelList = ({
                 setTeam1Streamers={setTeam1Streamers}
                 setTeam2Streamers={setTeam2Streamers}
                 draggingInfo={draggingInfo}
+                setDraggingInfo={setDraggingInfo}
               />
 
               {team2Streamers.length > 0 ? (
@@ -188,6 +193,7 @@ const EditChannelList = ({
                       setTeam1Streamers={setTeam1Streamers}
                       setTeam2Streamers={setTeam2Streamers}
                       draggingInfo={draggingInfo}
+                      setDraggingInfo={setDraggingInfo}
                     />
                   </React.Fragment>
                 ))
