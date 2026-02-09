@@ -87,9 +87,8 @@ const HomePage = ({
               />
             ) : (
               <StreamsGrid
-              className="max-h-dvh w-full"
-              showSidebar={showSidebar}
-                isMobile={isMobile}
+                className="max-h-dvh w-full"
+                showSidebar={showSidebar}
                 streamers={streamers}
                 setStreamers={setStreamers}
                 team1Streamers={team1Streamers}
