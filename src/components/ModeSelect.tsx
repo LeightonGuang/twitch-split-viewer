@@ -1,5 +1,3 @@
-import { GridViewIconSvg, TeamViewIconSvg } from "../assets/Icons";
-
 const ModeSelect = ({
   setStreamers,
   setTeam1Streamers,
