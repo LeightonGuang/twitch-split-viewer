@@ -51,7 +51,7 @@ const ChannelDraggableBox = ({
     >
       <DragIconSvg
         color="#fff"
-        className="h-4 w-4 cursor-grab"
+        className="h-4 w-4 cursor-grab active:cursor-grabbing"
         onMouseOver={() => setIsDraggable(true)}
         onMouseLeave={() => setIsDraggable(false)}
       />
