@@ -11,7 +11,7 @@ const ShareButton = ({
 }) => {
   return (
     <button
-      className="p-2 leading-none text-gray-500 hover:cursor-pointer hover:text-gray-400"
+      className="p-2 leading-none text-gray-500 hover:cursor-pointer hover:text-gray-400 active:scale-95"
       title="Share Channel List & View"
       onClick={() => {
         console.log("share clicked");

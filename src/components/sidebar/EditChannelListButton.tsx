@@ -24,7 +24,7 @@ const EditChannelListButton = ({
 
   return (
     <button
-      className={`p-2 leading-none text-gray-500 transition-[filter,transform,color] duration-500 ease-in-out hover:cursor-pointer hover:text-gray-400 active:scale-97 ${isSwitching ? "blur-xs" : "blur-0"} `}
+      className={`p-2 leading-none text-gray-500 transition-[filter,transform,color] duration-500 ease-in-out hover:cursor-pointer hover:text-gray-400 active:scale-95 ${isSwitching ? "blur-xs" : "blur-0"} `}
       title={showEditChannelList ? "Twitch Chat" : "Edit Channel List"}
       onClick={() => switchIcon(!showEditChannelList)}
     >
