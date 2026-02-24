@@ -1,4 +1,4 @@
-import { ExpandSidebarSvg, MinimizeSidebarSvg } from "../../assets/Icons";
+import { ExpandSidebarSvg, MinimizeSidebarSvg } from "../../../assets/Icons";
 
 const SidebarToggle = ({
   showSidebar,

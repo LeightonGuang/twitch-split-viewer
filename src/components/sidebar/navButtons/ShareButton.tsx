@@ -1,4 +1,4 @@
-import { ShareIconSvg } from "../../assets/Icons";
+import { ShareIconSvg } from "../../../assets/Icons";
 
 const ShareButton = ({
   streamers,
