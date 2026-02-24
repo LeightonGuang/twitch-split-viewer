@@ -1,8 +1,8 @@
 import { useState, useEffect } from "react";
 
 import Help from "../components/Help";
-import Sidebar from "../components/sidebar/Sidebar";
 import ModeSelect from "../components/ModeSelect";
+import Sidebar from "../components/sidebar/Sidebar";
 import StreamsGrid from "../components/StreamsGrid";
 import TwitchStreamPlayer from "../components/TwitchStreamPlayer";
 
@@ -23,7 +23,6 @@ const HomePage = ({
     useState<string>("");
   const [showSidebar, setshowSidebar] = useState<boolean>(true);
   const [showHelp, setShowHelp] = useState<boolean>(false);
-  const [isMobile, setIsMobile] = useState<boolean>(false);
 
   const hasParameter =
     streamers.length > 0 ||
@@ -48,21 +47,6 @@ const HomePage = ({
       setSelectedStreamerChat(team2Streamers[0]);
     }
   }, [streamers, team1Streamers, team2Streamers]);
-
-  useEffect(() => {
-    const checkWidth = () => {
-      const isMobile = window.innerWidth <= 768;
-      setIsMobile(isMobile);
-      setshowSidebar(!isMobile);
-    };
-
-    checkWidth();
-    window.addEventListener("resize", checkWidth);
-
-    return () => {
-      window.removeEventListener("resize", checkWidth);
-    };
-  }, []);
 
   return (
     <section
