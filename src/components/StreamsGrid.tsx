@@ -31,21 +31,24 @@ const StreamsGrid = ({
         <div
           className={`grid h-dvh w-full ${getGridClass(streamers.length, false)}`}
         >
-          {streamers.map((streamer, streamerIndex) => (
-            <div
-              className={`${selectedStreamerChat === streamer && showSidebar && "bg-twitch-gradient p-[0.15rem]"} ${streamerIndex === 0 && (streamers.length === 3 || streamers.length === 5 || streamers.length === 8) ? "col-span-2" : "col-span-1"}`}
-              key={streamer}
-            >
-              <TwitchStreamPlayer
-                className="h-full w-full"
-                streamer={streamer}
-                streamers={streamers}
-                setStreamers={setStreamers}
-                selectedExpandedStream={selectedExpandedStream}
-                setSelectedExpandedStream={setSelectedExpandedStream}
-              />
-            </div>
-          ))}
+          {[...streamers].sort().map((streamer) => {
+            const streamerIndex = streamers.indexOf(streamer);
+            return (
+              <div
+                className={`${selectedStreamerChat === streamer && showSidebar && "bg-twitch-gradient p-[0.15rem]"} ${streamerIndex === 0 && (streamers.length === 3 || streamers.length === 5 || streamers.length === 8) ? "col-span-2" : "col-span-1"}`}
+                key={streamer}
+                style={{ order: streamerIndex }}
+              >
+                <TwitchStreamPlayer
+                  className="h-full w-full"
+                  streamer={streamer}
+                  setStreamers={setStreamers}
+                  selectedExpandedStream={selectedExpandedStream}
+                  setSelectedExpandedStream={setSelectedExpandedStream}
+                />
+              </div>
+            );
+          })}
         </div>
       ) : team1Streamers.length > 0 || team2Streamers.length > 0 ? (
         <div className="flex h-full w-full">
@@ -53,16 +56,24 @@ const StreamsGrid = ({
             <div
               className={`grid h-dvh w-full ${getGridClass(team1Streamers.length, true)} bg-green-400 p-1`}
             >
-              {team1Streamers.map((streamer, streamerIndex) => (
-                <TwitchStreamPlayer
-                  key={streamer}
-                  className={`h-full w-full ${streamerIndex === 0 && (team1Streamers.length === 3 || team1Streamers.length === 5) ? "col-span-2" : ""}`}
-                  streamer={streamer}
-                  setTeam1Streamers={setTeam1Streamers}
-                  selectedExpandedStream={selectedExpandedStream}
-                  setSelectedExpandedStream={setSelectedExpandedStream}
-                />
-              ))}
+              {[...team1Streamers].sort().map((streamer) => {
+                const streamerIndex = team1Streamers.indexOf(streamer);
+                return (
+                  <div
+                    key={streamer}
+                    className={`${streamerIndex === 0 && (team1Streamers.length === 3 || team1Streamers.length === 5) ? "col-span-2" : ""}`}
+                    style={{ order: streamerIndex }}
+                  >
+                    <TwitchStreamPlayer
+                      className="h-full w-full"
+                      streamer={streamer}
+                      setTeam1Streamers={setTeam1Streamers}
+                      selectedExpandedStream={selectedExpandedStream}
+                      setSelectedExpandedStream={setSelectedExpandedStream}
+                    />
+                  </div>
+                );
+              })}
             </div>
           )}
 
@@ -70,16 +81,24 @@ const StreamsGrid = ({
             <div
               className={`grid h-dvh w-full ${getGridClass(team2Streamers.length, true)} bg-red-400 p-1`}
             >
-              {team2Streamers.map((streamer, streamerIndex) => (
-                <TwitchStreamPlayer
-                  key={streamer}
-                  className={`h-full w-full ${streamerIndex === 0 && (team2Streamers.length === 3 || team2Streamers.length === 5) ? "col-span-2" : ""}`}
-                  streamer={streamer}
-                  setTeam2Streamers={setTeam2Streamers}
-                  selectedExpandedStream={selectedExpandedStream}
-                  setSelectedExpandedStream={setSelectedExpandedStream}
-                />
-              ))}
+              {[...team2Streamers].sort().map((streamer) => {
+                const streamerIndex = team2Streamers.indexOf(streamer);
+                return (
+                  <div
+                    key={streamer}
+                    className={`${streamerIndex === 0 && (team2Streamers.length === 3 || team2Streamers.length === 5) ? "col-span-2" : ""}`}
+                    style={{ order: streamerIndex }}
+                  >
+                    <TwitchStreamPlayer
+                      className="h-full w-full"
+                      streamer={streamer}
+                      setTeam2Streamers={setTeam2Streamers}
+                      selectedExpandedStream={selectedExpandedStream}
+                      setSelectedExpandedStream={setSelectedExpandedStream}
+                    />
+                  </div>
+                );
+              })}
             </div>
           )}
         </div>
@@ -94,7 +113,13 @@ export default StreamsGrid;
 
 const getGridClass = (count: number, isTeamView: boolean) => {
   if (count <= 1) return "grid-cols-1 grid-rows-1";
-  if (count === 2) return "grid-cols-2 grid-rows-1";
+
+  if (!isTeamView) {
+    if (count === 2) return "grid-cols-2 grid-rows-1";
+  }
+  if (isTeamView) {
+    if (count === 2) return "grid-cols-1 grid-rows-2";
+  }
   if (count === 3 || count === 4) return "grid-cols-2 grid-rows-2";
   if (!isTeamView) {
     if (count === 5 || count === 6) return "grid-cols-3 grid-rows-2";

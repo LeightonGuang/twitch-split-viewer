@@ -80,7 +80,6 @@ const HomePage = ({
               <TwitchStreamPlayer
                 className="h-dvh w-full"
                 streamer={selectedExpandedStream}
-                streamers={streamers}
                 setStreamers={setStreamers}
                 selectedExpandedStream={selectedExpandedStream}
                 setSelectedExpandedStream={setSelectedExpandedStream}

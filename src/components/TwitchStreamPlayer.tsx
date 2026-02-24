@@ -19,7 +19,6 @@ const TwitchStreamPlayer = ({
 }: {
   className?: string;
   streamer: string;
-  streamers?: string[];
   setStreamers?: React.Dispatch<React.SetStateAction<string[]>>;
   setTeam1Streamers?: React.Dispatch<React.SetStateAction<string[]>>;
   setTeam2Streamers?: React.Dispatch<React.SetStateAction<string[]>>;
@@ -172,9 +171,8 @@ const TwitchStreamPlayer = ({
         </div>
 
         <iframe
-          key={streamer + "-" + refreshCount}
           className="h-full w-full"
-          src={`https://player.twitch.tv/?channel=${streamer}&parent=${window.location.hostname}`}
+          src={`https://player.twitch.tv/?channel=${streamer}&parent=${window.location.hostname}&t=${refreshCount}`}
           allowFullScreen
         />
       </div>
