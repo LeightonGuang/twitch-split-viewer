@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { ChatIconSvg, EditIconSvg } from "../../assets/Icons";
+import { ChatIconSvg, EditIconSvg } from "../../../assets/Icons";
 
 const EditChannelListButton = ({
   setShowSidebar,
