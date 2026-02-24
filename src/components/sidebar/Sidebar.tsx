@@ -1,11 +1,11 @@
 import TwitchChat from "./TwitchChat";
-import HelpButton from "./HelpButton";
 import ChatSelect from "./ChatSelect";
-import ShareButton from "./ShareButton";
-import SidebarToggle from "./SidebarToggle";
 import { useEffect, useState } from "react";
+import HelpButton from "./navButtons/HelpButton";
 import ChatSelectToggle from "./ChatSelectToggle";
-import EditChannelListButton from "./EditChannelListButton";
+import ShareButton from "./navButtons/ShareButton";
+import SidebarToggle from "./navButtons/SidebarToggle";
+import EditChannelListButton from "./navButtons/EditChannelListButton";
 import EditChannelContainer from "./editChannelList/EditChannelContainer";
 
 const Chat = ({
