@@ -1,9 +1,9 @@
-import { useEffect, useState } from "react";
 import TwitchChat from "./TwitchChat";
 import HelpButton from "./HelpButton";
 import ChatSelect from "./ChatSelect";
 import ShareButton from "./ShareButton";
 import SidebarToggle from "./SidebarToggle";
+import { useEffect, useState } from "react";
 import ChatSelectToggle from "./ChatSelectToggle";
 import EditChannelListButton from "./EditChannelListButton";
 import EditChannelContainer from "./editChannelList/EditChannelContainer";
@@ -57,13 +57,13 @@ const Chat = ({
   }, [streamers, team1Streamers, team2Streamers]);
 
   return (
-    <div
-      className={`${className} flex h-dvh max-w-[21.25rem] min-w-[3rem] flex-col bg-[#18181a] transition-[width] duration-750 ease-in-out ${
-        showSidebar ? "w-[30rem]" : "w-[4.15rem]"
+    <nav
+      className={`${className} flex h-dvh max-w-85 min-w-12 flex-col bg-[#18181a] transition-[width] duration-750 ease-in-out ${
+        showSidebar ? "w-120" : "w-10"
       }`}
     >
       <div
-        className={`flex gap-2 ${showSidebar ? "w-full" : "flex-col items-center"} ${showChatSelect ? "px-2 pt-2" : "p-2"}`}
+        className={`flex ${showSidebar ? "w-full" : "flex-col items-center"} ${showChatSelect ? "gap-4 p-4" : "gap-2 p-2"}`}
       >
         <SidebarToggle
           showSidebar={showSidebar}
@@ -86,10 +86,10 @@ const Chat = ({
         <HelpButton showHelp={showHelp} onClick={() => setShowHelp(true)} />
       </div>
 
-      <div
-        className={`flex h-min w-full flex-wrap gap-2 px-3 py-2 text-white ${!showSidebar && "w-min flex-col gap-0 p-0"} ${showChatSelect ? "max-h-full" : "hidden"}`}
-      >
-        {showSidebar && !selectedExpandedStream && (
+      {showSidebar && !selectedExpandedStream && (
+        <div
+          className={`flex h-min w-full flex-wrap gap-2 px-2 pb-2 text-white ${!showSidebar && "w-min flex-col gap-0 p-0"} ${showChatSelect ? "max-h-full" : "hidden"}`}
+        >
           <ChatSelect
             streamers={streamers}
             setStreamers={setStreamers}
@@ -107,8 +107,8 @@ const Chat = ({
             isGridViewMode={isGridViewMode}
             isTeamViewMode={isTeamViewMode}
           />
-        )}
-      </div>
+        </div>
+      )}
 
       {/* Show/Hide chat select button */}
 
@@ -141,7 +141,7 @@ const Chat = ({
             selectedStreamerChat={selectedStreamerChat}
           />
         ))}
-    </div>
+    </nav>
   );
 };
 

@@ -8,26 +8,23 @@ const SidebarToggle = ({
   showSidebar: boolean;
   setShowSidebar: React.Dispatch<React.SetStateAction<boolean>>;
   setshowEditChannelList: React.Dispatch<React.SetStateAction<boolean>>;
-}) =>
-  showSidebar ? (
+}) => {
+  return (
     <button
-      className="p-2 leading-none text-gray-500 hover:cursor-pointer hover:text-gray-400"
-      title="Minimize Sidebar"
+      className="leading-none text-gray-500 hover:cursor-pointer hover:text-gray-400"
+      title={showSidebar ? "Minimize Sidebar" : "Expand Sidebar"}
       onClick={() => {
-        setShowSidebar(false);
+        setShowSidebar(!showSidebar);
         setshowEditChannelList(false);
       }}
     >
-      <MinimizeSidebarSvg className="h-4 w-4" />
-    </button>
-  ) : (
-    <button
-      className="p-2 leading-none text-gray-500 hover:cursor-pointer hover:text-gray-400"
-      title="Expand Sidebar"
-      onClick={() => setShowSidebar(true)}
-    >
-      <ExpandSidebarSvg className="h-4 w-4" />
+      {showSidebar ? (
+        <MinimizeSidebarSvg className="size-4" />
+      ) : (
+        <ExpandSidebarSvg className="size-4" />
+      )}
     </button>
   );
+};
 
 export default SidebarToggle;
