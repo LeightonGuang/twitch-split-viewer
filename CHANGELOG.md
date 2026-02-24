@@ -1,5 +1,12 @@
 # CHANGELOG
 
+# v2.1.1 24-02-2026
+
+- Fixed sidebar opening by itself when browser window is dragged around
+- Fixed reorder channel causes stream rerendering
+- Fixed drag and drop not working as expected
+- Fixed gradient border not showing when sidebar is hidden
+
 # v2.1.0 31-08-2025
 
 - Redesign sidebar button to fit with edit and share button.
