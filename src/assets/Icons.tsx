@@ -251,3 +251,33 @@ export const ChatIconSvg = ({ ...props }: React.SVGProps<SVGSVGElement>) => (
     />
   </svg>
 );
+
+export const UnmuteIconSvg = ({ ...props }: React.SVGProps<SVGSVGElement>) => (
+  <svg
+    width="24"
+    height="24"
+    viewBox="0 0 24 24"
+    focusable="false"
+    aria-hidden="true"
+    role="presentation"
+    fill="currentColor"
+    {...props}
+  >
+    <path d="m7 8.004 5.146-5.147a.5.5 0 0 1 .854.354v17.586a.5.5 0 0 1-.854.353L7 16.004H4a2 2 0 0 1-2-2v-4a2 2 0 0 1 2-2h3Zm8 1a3 3 0 1 1 0 6v-6Z" />
+  </svg>
+);
+
+export const MuteIconSvg = ({ ...props }: React.SVGProps<SVGSVGElement>) => (
+  <svg
+    width="24"
+    height="24"
+    viewBox="0 0 24 24"
+    focusable="false"
+    aria-hidden="true"
+    role="presentation"
+    fill="currentColor"
+    {...props}
+  >
+    <path d="M12.146 2.857 7 8.004H4a2 2 0 0 0-2 2v4a2 2 0 0 0 2 2h3l5.146 5.146a.5.5 0 0 0 .854-.353V3.21a.5.5 0 0 0-.854-.354ZM20.5 15.5l-2-2-2 2L15 14l2-2-2-2 1.5-1.5 2 2 2-2L22 10l-2 2 2 2-1.5 1.5Z" />
+  </svg>
+);
