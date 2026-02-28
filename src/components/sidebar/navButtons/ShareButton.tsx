@@ -14,8 +14,7 @@ const ShareButton = ({
       className="leading-none text-gray-500 hover:cursor-pointer hover:text-gray-400 active:scale-95"
       title="Share Channel List & View"
       onClick={() => {
-        console.log("share clicked");
-        const url = "https://twitchsplitviewer.pages.dev/";
+        const url = window.location.href;
 
         const hasStreamers = streamers.length > 0;
         const hasTeam1Channels = team1Streamers.length > 0;
