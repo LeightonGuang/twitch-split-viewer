@@ -12,12 +12,12 @@ const EditChannelListButton = ({
 }) => {
   const [isSwitching, setIsSwitching] = useState(false);
 
-  const switchIcon = (next: boolean) => {
+  const switchIcon = (showEdit: boolean) => {
     setIsSwitching(true);
 
     setTimeout(() => {
-      if (next) setShowSidebar(true);
-      setshowEditChannelList(next);
+      if (showEdit) setShowSidebar(true);
+      setshowEditChannelList(showEdit);
       setIsSwitching(false);
     }, 150);
   };
