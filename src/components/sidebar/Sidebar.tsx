@@ -24,19 +24,61 @@ const Chat = ({
   setSelectedStreamerChat,
   selectedExpandedStream,
 }: {
+  /**
+   * class name for the sidebar
+   */
   className?: string;
+  /**
+   * list of streamers in grid view
+   */
   streamers: string[];
+  /**
+   * function to set the list of streamers in grid view
+   */
   setStreamers: React.Dispatch<React.SetStateAction<string[]>>;
+  /**
+   * list of team 1 streamers
+   */
   team1Streamers: string[];
+  /**
+   * function to set the list of team 1 streamers
+   */
   setTeam1Streamers: React.Dispatch<React.SetStateAction<string[]>>;
+  /**
+   * list of team 2 streamers
+   */
   team2Streamers: string[];
+  /**
+   * function to set the list of team 2 streamers
+   */
   setTeam2Streamers: React.Dispatch<React.SetStateAction<string[]>>;
+  /**
+   * boolean to show/hide the sidebar
+   */
   showSidebar: boolean;
+  /**
+   * function to set the boolean to show/hide the sidebar
+   */
   setShowSidebar: React.Dispatch<React.SetStateAction<boolean>>;
+  /**
+   * boolean to show/hide the help modal
+   */
   showHelp: boolean;
+  /**
+   * function to set the boolean to show/hide the help modal
+   */
   setShowHelp: React.Dispatch<React.SetStateAction<boolean>>;
+  /**
+   * the streamer currently selected for chat
+   */
   selectedStreamerChat: string;
+  /**
+   * function to set the streamer currently selected for chat
+   */
   setSelectedStreamerChat: React.Dispatch<React.SetStateAction<string>>;
+  /**
+   * the streamer currently selected for the expanded view
+   */
   selectedExpandedStream: string;
 }) => {
   const [showChatSelect, setShowChatSelect] = useState<boolean>(true);
