@@ -85,11 +85,7 @@ const HomePage = ({
             )}
           </>
         ) : (
-          <ModeSelect
-            setStreamers={setStreamers}
-            setTeam1Streamers={setTeam1Streamers}
-            setTeam2Streamers={setTeam2Streamers}
-          />
+          <ModeSelect />
         )}
 
         <Sidebar
