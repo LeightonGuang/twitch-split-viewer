@@ -7,7 +7,7 @@ const HelpButton = ({
 }) => {
   return (
     <button
-      className={`size-4 leading-none hover:cursor-pointer hover:text-gray-400 active:scale-95 ${showHelp ? "text-[#9147ff]" : "text-gray-500"}`}
+      className={`size-4 leading-none select-none hover:cursor-pointer hover:text-gray-400 active:scale-95 ${showHelp ? "text-[#9147ff]" : "text-gray-500"}`}
       title="Help"
       onClick={onClick}
     >
